@@ -10,6 +10,7 @@
 #import "usermenusviewcontroller.h"
 #import "ECSlidingViewController.h"
 #import "menuitems.h"
+#import "PieChart.h"
 @interface userdashboard ()
 
 @end
@@ -22,6 +23,8 @@
 @synthesize table;
 @synthesize name;
 @synthesize role;
+@synthesize Chart;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -42,19 +45,23 @@
         self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"items"];
     }
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-    
-    
-    self.menubutton = [UIButton buttonWithType:UIButtonTypeCustom];
+       self.menubutton = [UIButton buttonWithType:UIButtonTypeCustom];
     menubutton .frame = CGRectMake(8, 10, 34, 24);
     [menubutton  setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
     [menubutton  addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
     
     
-    [self.view addSubview:self.menubutton ];
+    [self.view addSubview:self.menubutton];
+    //[self.view addSubview:self.Chart ];
    NSLog(@"NAME at dash:%@",[data objectForKey:@"name"]);
     self.label.text = [data objectForKey:@"name"];
     self.name.text = [data objectForKey:self.name.text];
     self.role.text = [data objectForKey:self.role.text];
+    NSNumber *pieData = [[NSNumber alloc] initWithFloat:15.0];
+    //sel.Chart = [[PieChart alloc] initWithPieData:pieData];
+    [self.Chart initWithPieData:pieData];
+    NSLog(@"final%f",[self.Chart.PieData floatValue]);
+    
 
 }
 

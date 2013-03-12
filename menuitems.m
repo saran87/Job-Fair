@@ -20,6 +20,8 @@
 @implementation menuitems
 @synthesize menuitems;
 @synthesize data;
+@synthesize TopViewController;
+@synthesize controller;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -41,14 +43,13 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.menuitems = [NSArray arrayWithObjects:@"Dashboard", @"appliedjob", @"CompanyInfo", @"SignOut", nil];
-   
-    
     [self.slidingViewController setAnchorRightRevealAmount:145.0f];
     self.slidingViewController.underLeftWidthLayout = ECFullWidth;
     self.tableView.tableFooterView = [[UIView alloc] init];
     usermenusviewcontroller *topview = (usermenusviewcontroller *)[self.slidingViewController topViewController];
     data = topview.data;
     NSLog(@"data %@",data);
+    controller = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -136,42 +137,57 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-    id newTopViewController;
+    
     NSString *identifier = [NSString stringWithFormat:@"%@", [self.menuitems objectAtIndex:indexPath.row]];
    
     if([identifier isEqual:[self.menuitems objectAtIndex:0]]){
-        NSLog(@"HELP ME %@",data);
-       newTopViewController = [[userdashboard alloc]init];
-        userdashboard *pop =(userdashboard *)[self.storyboard instantiateViewControllerWithIdentifier:identifier];
-        pop.data = self.data;
-        newTopViewController = pop;
-        NSLog(@"%@",pop.data);
+        if([controller count] < 1||[[controller objectAtIndex:0] isEqual:[NSNull null]]){
+            NSLog(@"HELP ME %@",data);
+            userdashboard *pop =(userdashboard *)[self.storyboard instantiateViewControllerWithIdentifier:identifier];
+            pop.data = self.data;
+           
+            [controller addObject:pop];
+        }
+        NSLog(@"OBJECT %@",[controller objectAtIndex:0]);
+        TopViewController = [controller objectAtIndex:0];
     }
     else if([identifier isEqualToString:@"appliedjob"]){
+        if([controller count] <2 ||[[controller objectAtIndex:1] isEqual:[NSNull null]]){
+            NSLog(@"HELP ME %@",data);
+            AppliedJob *pop =(AppliedJob *)[self.storyboard instantiateViewControllerWithIdentifier:identifier];
+            pop.data = self.data;
+            
+            [controller addObject:pop];
+        }
        
-        newTopViewController = [[AppliedJob alloc]init];
-        AppliedJob *pop =(AppliedJob *)[self.storyboard instantiateViewControllerWithIdentifier:identifier];
-        pop.data = self.data;
-        newTopViewController = pop;
-        
+        TopViewController = [controller objectAtIndex:1];
     }
     else if([identifier isEqualToString:@"CompanyInfo"]){
-        newTopViewController = [[CompanyInfo alloc]init];
-        CompanyInfo *pop =(CompanyInfo *)[self.storyboard instantiateViewControllerWithIdentifier:identifier];
-        pop.data = self.data;
-        newTopViewController = pop;
+        if([controller count] < 3||[[controller objectAtIndex:2] isEqual:[NSNull null]]){
+            NSLog(@"HELP ME %@",data);
+            CompanyInfo *pop =(CompanyInfo *)[self.storyboard instantiateViewControllerWithIdentifier:identifier];
+            pop.data = self.data;
+            
+            [controller addObject:pop];
+        }
+        NSLog(@"OBJECT %@",[controller objectAtIndex:2]);
+        TopViewController = [controller objectAtIndex:2];
     }
     else if([identifier isEqualToString:@"SignOut"]){
-         newTopViewController = [[ViewController alloc]init];
-        ViewController *Controller = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
-        newTopViewController = Controller;
+        if([controller count] < 4||[[controller objectAtIndex:3] isEqual:[NSNull null]]){
+            NSLog(@"HELP ME %@",data);
+            ViewController *pop =(ViewController *)[self.storyboard instantiateViewControllerWithIdentifier:identifier];
+                [controller addObject:pop];
+        }
+        NSLog(@"OBJECT %@",[controller objectAtIndex:3]);
+        TopViewController = [controller objectAtIndex:3];
         
     }
-    NSLog(@"I AM OUT %@",[newTopViewController class]);
+    NSLog(@"I AM OUT %@",[TopViewController class]);
 
     [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
         CGRect frame = self.slidingViewController.topViewController.view.frame;
-        self.slidingViewController.topViewController = newTopViewController;
+        self.slidingViewController.topViewController = TopViewController;
         self.slidingViewController.topViewController.view.frame = frame;
         [self.slidingViewController resetTopView];
     }];

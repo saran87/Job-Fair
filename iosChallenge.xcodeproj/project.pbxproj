@@ -24,14 +24,16 @@
 		014B933016EBB5C6007F82FD /* menuitems.m in Sources */ = {isa = PBXBuildFile; fileRef = 014B932F16EBB5C6007F82FD /* menuitems.m */; };
 		014B933416EBB607007F82FD /* userdashboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 014B933316EBB607007F82FD /* userdashboard.m */; };
 		014B933C16EBBF3F007F82FD /* menuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 014B933B16EBBF3F007F82FD /* menuButton@2x.png */; };
-		01B880F816EBD15E0058509D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B880F616EBD15E0058509D /* MainStoryboard.storyboard */; };
+		016A3E3816EEDDAE0013ECDB /* PieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 016A3E3516EEDC970013ECDB /* PieChart.m */; };
+		0170EF5416EED56F0099A14D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0170EF5316EED56F0099A14D /* QuartzCore.framework */; };
 		01B880FF16EBD88A0058509D /* AppliedJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B880FE16EBD88A0058509D /* AppliedJob.m */; };
 		01B8810316EBDBB20058509D /* CompanyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B8810216EBDBB20058509D /* CompanyInfo.m */; };
 		01B8810716EBE0AF0058509D /* companymenusviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B8810616EBE0AF0058509D /* companymenusviewcontroller.m */; };
 		01B8810B16EBE0DF0058509D /* companymenuitems.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B8810A16EBE0DF0058509D /* companymenuitems.m */; };
 		01B8810F16EBE1A20058509D /* companydashboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B8810E16EBE1A20058509D /* companydashboard.m */; };
 		01B8811316EBFC0F0058509D /* Inqueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B8811216EBFC0E0058509D /* Inqueue.m */; };
-		01F46B4B16EE7F2300DC8004 /* view.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 01F46B4A16EE7F2300DC8004 /* view.jpg */; };
+		01DF113C16EED736004E8E23 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01DF113A16EED736004E8E23 /* MainStoryboard.storyboard */; };
+		01F483B016EEA98400828EEF /* view.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 01F483AF16EEA98400828EEF /* view.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,7 +64,9 @@
 		014B933216EBB607007F82FD /* userdashboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userdashboard.h; sourceTree = "<group>"; };
 		014B933316EBB607007F82FD /* userdashboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userdashboard.m; sourceTree = "<group>"; };
 		014B933B16EBBF3F007F82FD /* menuButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuButton@2x.png"; sourceTree = "<group>"; };
-		01B880F716EBD15E0058509D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = iosChallenge/en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		016A3E3416EEDC970013ECDB /* PieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChart.h; sourceTree = "<group>"; };
+		016A3E3516EEDC970013ECDB /* PieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChart.m; sourceTree = "<group>"; };
+		0170EF5316EED56F0099A14D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		01B880FD16EBD88A0058509D /* AppliedJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppliedJob.h; sourceTree = "<group>"; };
 		01B880FE16EBD88A0058509D /* AppliedJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppliedJob.m; sourceTree = "<group>"; };
 		01B8810116EBDBB20058509D /* CompanyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyInfo.h; sourceTree = "<group>"; };
@@ -75,7 +79,8 @@
 		01B8810E16EBE1A20058509D /* companydashboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = companydashboard.m; sourceTree = "<group>"; };
 		01B8811116EBFC0E0058509D /* Inqueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inqueue.h; sourceTree = "<group>"; };
 		01B8811216EBFC0E0058509D /* Inqueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inqueue.m; sourceTree = "<group>"; };
-		01F46B4A16EE7F2300DC8004 /* view.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = view.jpg; path = ../../../../Desktop/images/view.jpg; sourceTree = "<group>"; };
+		01DF113B16EED736004E8E23 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = iosChallenge/en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		01F483AF16EEA98400828EEF /* view.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = view.jpg; path = ../../../../Desktop/images/view.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0170EF5416EED56F0099A14D /* QuartzCore.framework in Frameworks */,
 				014B92E116EB997D007F82FD /* UIKit.framework in Frameworks */,
 				014B92E316EB997D007F82FD /* Foundation.framework in Frameworks */,
 				014B92E516EB997D007F82FD /* CoreGraphics.framework in Frameworks */,
@@ -95,15 +101,9 @@
 		014B92D116EB997D007F82FD = {
 			isa = PBXGroup;
 			children = (
-				01B8811016EBFBEB0058509D /* inqueue */,
-				01B8810C16EBE0E50058509D /* company */,
-				01B8810816EBE0B80058509D /* company menuitems */,
-				01B8810416EBE06F0058509D /* companymenu */,
-				01B8810016EBDB9E0058509D /* CompanyInfo */,
-				01B880F916EBD8230058509D /* AppliedJob */,
-				014B933116EBB5D4007F82FD /* applicant */,
-				014B932D16EBB5AA007F82FD /* menutable */,
-				014B932C16EBB564007F82FD /* usermenu */,
+				015ED22416EF2177001E2E97 /* Services */,
+				015ED22316EF216F001E2E97 /* Models */,
+				015ED22216EF20D2001E2E97 /* Controllers */,
 				014B92E616EB997D007F82FD /* iosChallenge */,
 				014B92DF16EB997D007F82FD /* Frameworks */,
 				014B92DD16EB997D007F82FD /* Products */,
@@ -121,6 +121,7 @@
 		014B92DF16EB997D007F82FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0170EF5316EED56F0099A14D /* QuartzCore.framework */,
 				014B92E016EB997D007F82FD /* UIKit.framework */,
 				014B92E216EB997D007F82FD /* Foundation.framework */,
 				014B92E416EB997D007F82FD /* CoreGraphics.framework */,
@@ -131,9 +132,9 @@
 		014B92E616EB997D007F82FD /* iosChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				014B932D16EBB5AA007F82FD /* menutable */,
 				014B932216EBB4F9007F82FD /* ECSlidingViewController */,
 				014B92EF16EB997D007F82FD /* AppDelegate.h */,
-				01B880F616EBD15E0058509D /* MainStoryboard.storyboard */,
 				014B92F016EB997D007F82FD /* AppDelegate.m */,
 				014B92FB16EB997D007F82FD /* ViewController.h */,
 				014B92FC16EB997D007F82FD /* ViewController.m */,
@@ -146,9 +147,10 @@
 			isa = PBXGroup;
 			children = (
 				014B92E816EB997D007F82FD /* iosChallenge-Info.plist */,
-				01F46B4A16EE7F2300DC8004 /* view.jpg */,
 				014B933B16EBBF3F007F82FD /* menuButton@2x.png */,
+				01F483AF16EEA98400828EEF /* view.jpg */,
 				014B931C16EBA902007F82FD /* login_shape2.jpg */,
+				01DF113A16EED736004E8E23 /* MainStoryboard.storyboard */,
 				014B92E916EB997D007F82FD /* InfoPlist.strings */,
 				014B92EC16EB997D007F82FD /* main.m */,
 				014B92EE16EB997D007F82FD /* iosChallenge-Prefix.pch */,
@@ -186,15 +188,52 @@
 				014B932F16EBB5C6007F82FD /* menuitems.m */,
 			);
 			name = menutable;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		014B933116EBB5D4007F82FD /* applicant */ = {
 			isa = PBXGroup;
 			children = (
+				01B8811016EBFBEB0058509D /* inqueue */,
+				014B932C16EBB564007F82FD /* usermenu */,
+				01B880F916EBD8230058509D /* AppliedJob */,
 				014B933216EBB607007F82FD /* userdashboard.h */,
 				014B933316EBB607007F82FD /* userdashboard.m */,
 			);
 			name = applicant;
+			sourceTree = "<group>";
+		};
+		015ED22016EF205F001E2E97 /* PieChart */ = {
+			isa = PBXGroup;
+			children = (
+				016A3E3416EEDC970013ECDB /* PieChart.h */,
+				016A3E3516EEDC970013ECDB /* PieChart.m */,
+			);
+			name = PieChart;
+			sourceTree = "<group>";
+		};
+		015ED22216EF20D2001E2E97 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				015ED22016EF205F001E2E97 /* PieChart */,
+				01B8810C16EBE0E50058509D /* company */,
+				014B933116EBB5D4007F82FD /* applicant */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		015ED22316EF216F001E2E97 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		015ED22416EF2177001E2E97 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 		01B880F916EBD8230058509D /* AppliedJob */ = {
@@ -236,6 +275,9 @@
 		01B8810C16EBE0E50058509D /* company */ = {
 			isa = PBXGroup;
 			children = (
+				01B8810016EBDB9E0058509D /* CompanyInfo */,
+				01B8810416EBE06F0058509D /* companymenu */,
+				01B8810816EBE0B80058509D /* company menuitems */,
 				01B8810D16EBE1A20058509D /* companydashboard.h */,
 				01B8810E16EBE1A20058509D /* companydashboard.m */,
 			);
@@ -308,8 +350,8 @@
 				014B92F716EB997D007F82FD /* Default-568h@2x.png in Resources */,
 				014B931D16EBA902007F82FD /* login_shape2.jpg in Resources */,
 				014B933C16EBBF3F007F82FD /* menuButton@2x.png in Resources */,
-				01B880F816EBD15E0058509D /* MainStoryboard.storyboard in Resources */,
-				01F46B4B16EE7F2300DC8004 /* view.jpg in Resources */,
+				01F483B016EEA98400828EEF /* view.jpg in Resources */,
+				01DF113C16EED736004E8E23 /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				016A3E3816EEDDAE0013ECDB /* PieChart.m in Sources */,
 				014B92ED16EB997D007F82FD /* main.m in Sources */,
 				014B92F116EB997D007F82FD /* AppDelegate.m in Sources */,
 				014B92FD16EB997D007F82FD /* ViewController.m in Sources */,
@@ -348,10 +391,10 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		01B880F616EBD15E0058509D /* MainStoryboard.storyboard */ = {
+		01DF113A16EED736004E8E23 /* MainStoryboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				01B880F716EBD15E0058509D /* en */,
+				01DF113B16EED736004E8E23 /* en */,
 			);
 			name = MainStoryboard.storyboard;
 			path = ..;

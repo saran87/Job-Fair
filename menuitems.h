@@ -11,5 +11,6 @@
 @interface menuitems : UITableViewController
 @property (strong, nonatomic)NSMutableArray *menuitems;
 @property (strong,atomic) NSDictionary *data;
-
+@property (strong,nonatomic) UIViewController* TopViewController;
+@property (strong,nonatomic) NSMutableArray* controller;
 @end
