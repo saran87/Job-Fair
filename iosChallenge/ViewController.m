@@ -42,32 +42,23 @@ int movementDistance = 130;
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     
-    
     [self animateTextField: textField up: YES];
-    NSLog(@"Hi");
 }
 
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    
     [self animateTextField: textField up: NO];
 }
 - (void) animateTextField: (UITextField*) textField up: (BOOL) up
 {
-    
-    
-    
-    
-    
+
     if(!isWide)
     {
-       
         movement = (up ? -movementDistance : movementDistance);
     }
     else
     {
-        
         movementDistance = 100;
         movement = (up ? -movementDistance : movementDistance);
     }
@@ -77,9 +68,7 @@ int movementDistance = 130;
     self.view.frame = CGRectOffset(self.view.frame, 0, movement);
     [UIView commitAnimations];
     
-    
 }
-
 
 - (IBAction)release:(id)sender {
     [self.view endEditing:YES ];
@@ -96,16 +85,16 @@ int movementDistance = 130;
     [theRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
     NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
     // Create the request.
-if (theConnection) {
+    if (theConnection) {
         // Create the NSMutableData to hold the received data.
         // requireddata is an instance variable declared elsewhere.
-       requireddata = [NSMutableData data];
+        requireddata = [NSMutableData data];
         NSLog(@"%@",requireddata);
     } else {
         // Inform the user that the connection failed.
         NSLog(@"Not Recieved");
     }
-   
+    
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:

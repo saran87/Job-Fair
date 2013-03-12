@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Job : NSObject
+@interface Job : NSObject{
+    
+    int _jobId;
+    NSString* _postion;
+    NSString* _description;
+    NSString* _companyProfile;
+    bool _status;
+}
 
 @end

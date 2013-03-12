@@ -3,11 +3,12 @@
 //  iosChallenge
 //
 //  Created by Saravana Kumar on 3/11/13.
-//  Copyright (c) 2013 Roshan Balaji Nindrai SenthilNathan. All rights reserved.
+//  Copyright (c) 2013 Roshan Balaji Nindrai Saravana. All rights reserved.
 //
 
 #import "Job.h"
 
-@implementation Job
-
+@implementation Job{
+    
+}
 @end
