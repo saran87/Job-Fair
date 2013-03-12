@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "usermenusviewcontroller.h"
+#import "PieChart.h"
 @interface userdashboard : UIViewController
 @property (strong,nonatomic) UIButton *menubutton;
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (strong,atomic) NSDictionary *data;
 @property (strong, nonatomic)usermenusviewcontroller *userview;
+@property (nonatomic,strong) IBOutlet PieChart *Chart;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *role;
 @property (strong, nonatomic)UITableView *table;
+
 @end
