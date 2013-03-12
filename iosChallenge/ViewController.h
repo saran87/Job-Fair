@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ViewController : UIViewController <UITextFieldDelegate, NSURLConnectionDelegate>
+#import "Service.h"
+@interface ViewController : UIViewController <UITextFieldDelegate, NSURLConnectionDelegate, ServiceProtocol>
 @property (weak, nonatomic) IBOutlet UIButton *signin;
 @property (weak, nonatomic) IBOutlet UITextField *password;
 @property (weak, nonatomic) IBOutlet UITextField *username;
 @property (strong, nonatomic) NSMutableData * requireddata;
 @property (nonatomic, strong) NSURLConnection *connection;
+@property (nonatomic,strong) Service* service;
 - (IBAction)release:(id)sender;
 
 - (IBAction)signIn:(id)sender;

@@ -10,18 +10,19 @@
 #import "Const.h"
 
 @implementation Service
-@synthesize consts;
 @synthesize requireddata;
+@synthesize delegate;
 
--(void)ConnectonforLoginwith:(NSMutableDictionary *)requestdata
-                            :(NSString *) ConnectionString       {
+-(void)MakeCall:(NSMutableDictionary *)requestdata
+        ConnectionString :(NSString *) ConnectionString       {
+
     NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:ConnectionString]                                                   cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                         timeoutInterval:60.0];
-    NSString *params = [[NSString alloc]initWithString:ConnectionString];
-    for (NSString* key in requestdata) {
-        NSLog(@"%@",key);
-        params = [NSString stringWithFormat:@"%@%@=%@",params,key,[requestdata objectForKey:key]];
+    NSString *params = @"";
+    for (NSString* key in [requestdata allKeys]) {
+        params = [NSString stringWithFormat:@"%@%@=%@&",params,key,[requestdata objectForKey:key]];
     }
+    NSLog(@"%@",ConnectionString);
    
     [theRequest setHTTPMethod:@"POST"] ;
     [theRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
@@ -45,26 +46,41 @@
 (NSURLResponse *)response
 {
     // Discard all previously received data.
-    NSLog( @"Succeeded! Received bytes of data");
-    NSLog(@"%@",response.URL);
-    [requireddata setLength:0];
+    NSLog( @"Response Recieved");
+    requireddata = [[NSMutableData alloc] init];
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:
 (NSData *)data
 {
     // Append the new data to the receivedData.
-    // NSLog( @"Succeeded! Received bytes of data");
+   
     [requireddata appendData:data];
+     NSLog( @"Succeeded! Received %d bytes of data", [requireddata length] );
 }
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    // Connection succeeded in downloading the request.
-    NSLog( @"Succeeded! Received %d bytes of data", [requireddata length] );
-    NSDictionary *data = [NSJSONSerialization JSONObjectWithData:requireddata options:0 error:nil];
-    [delegate finished];
+    NSLog(@"done");
+    if([requireddata length]>0){
+        // Connection succeeded in downloading the request.
+        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:requireddata options:0 error:nil];
+        // call the delegate after the service call is done
+        [self.delegate ServiceRequestComplete:data serviceStatus:SUCCESS];
+    }else{
+        [self.delegate ServiceRequestComplete:nil serviceStatus:FAILURE];
+    }
     
+}
+
+- (void)connection:(NSURLConnection *)connection
+  didFailWithError:(NSError *)error
+{
+    
+    // inform the user
+    NSLog(@"Connection failed! Error - %@ %@",
+          [error localizedDescription],
+          [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
 }
 
 @end

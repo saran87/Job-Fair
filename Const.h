@@ -10,6 +10,7 @@
 
 @interface Const : NSObject
 
-extern NSString *const LoginString;
-@property (strong, nonatomic) NSMutableData *recieveddata;
+extern NSString *const LOGINURL;
+extern NSString *const SUCCESS;
+extern NSString *const FAILURE;
 @end

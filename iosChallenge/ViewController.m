@@ -22,6 +22,7 @@
 @synthesize signin;
 @synthesize requireddata;
 @synthesize connection;
+@synthesize service;
 bool keyboardIsShown = NO;
 int movement = 0;
 int movementDistance = 130;
@@ -56,10 +57,6 @@ int movementDistance = 130;
 - (void) animateTextField: (UITextField*) textField up: (BOOL) up
 {
     
-    
-    
-    
-    
     if(!isWide)
     {
        
@@ -76,8 +73,6 @@ int movementDistance = 130;
     [UIView setAnimationDuration: movementDuration];
     self.view.frame = CGRectOffset(self.view.frame, 0, movement);
     [UIView commitAnimations];
-    
-    
 }
 
 
@@ -86,8 +81,36 @@ int movementDistance = 130;
 }
 
 - (IBAction)signIn:(id)sender {
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    [dic setObject: username.text forKey:@"email"];
+    [dic setObject:password.text forKey:@"password"];
+    
+    self.service = [[Service   alloc]init];
+    self.service.delegate = self;
+    [self.service MakeCall:dic ConnectionString:LOGINURL];
+}
 
-
+-(void)ServiceRequestComplete:(NSDictionary *)response serviceStatus:(NSString *)status{
+    
+    NSLog(@"Recieved :%@",response);
+    
+    NSLog(@"%@",[response objectForKey:@"name"]);
+    if([response objectForKey:@"name"] != NULL)
+    {
+            
+            if([[response objectForKey:@"role"] isEqualToString:@"user"])
+            {
+                [self performSegueWithIdentifier:@"userseque" sender:response];
+            }
+        
+            else if([[response objectForKey:@"role"] isEqualToString:@"user"])
+            {
+                    [self performSegueWithIdentifier:@"companyseque" sender:response];
+                        
+            }
+    }
+}
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSDictionary *)data{
     if([[data objectForKey:@"role"] isEqualToString:@"user"])
     {

@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "Const.h"
-#import "ServerModel.h"
+#import "ServiceProtocol.h"
 @interface Service : NSObject<NSURLConnectionDataDelegate>{
-    id <serverCompleteDelegate> delegate;
+   
 }
-@property (weak, nonatomic) Const* consts;
-@property (weak, nonatomic) NSMutableData* requireddata;
-@property (retain, nonatomic) id <serverCompleteDelegate> delegate;
+@property (strong, nonatomic) NSMutableData* requireddata;
+@property (nonatomic, assign) id<ServiceProtocol> delegate;
+
+-(void)MakeCall:(NSMutableDictionary *)requestdata
+              ConnectionString :(NSString *) ConnectionString;
+
 @end
 
