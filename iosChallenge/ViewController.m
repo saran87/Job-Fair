@@ -86,63 +86,8 @@ int movementDistance = 130;
 }
 
 - (IBAction)signIn:(id)sender {
-    NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://saravananadar.com/jobfair/index.php?s=login"]
-                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                        timeoutInterval:60.0];
-    // create the connection with the request
-    // and start loading the data
-    NSString *params = [[NSString alloc] initWithFormat:@"email=%@&password=%@",username.text,password.text];
-    [theRequest setHTTPMethod:@"POST"];
-    [theRequest setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
-    NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-    // Create the request.
-if (theConnection) {
-        // Create the NSMutableData to hold the received data.
-        // requireddata is an instance variable declared elsewhere.
-       requireddata = [NSMutableData data];
-        NSLog(@"%@",requireddata);
-    } else {
-        // Inform the user that the connection failed.
-        NSLog(@"Not Recieved");
-    }
-   
-}
 
--(void)connection:(NSURLConnection *)connection didReceiveResponse:
-(NSURLResponse *)response
-{
-    // Discard all previously received data.
-    NSLog( @"Succeeded! Received bytes of data");
-    NSLog(@"%@",response.URL);
-    [requireddata setLength:0];
-}
 
--(void)connection:(NSURLConnection *)connection didReceiveData:
-(NSData *)data
-{
-    // Append the new data to the receivedData.
-    // NSLog( @"Succeeded! Received bytes of data");
-    [requireddata appendData:data];
-}
-
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    // Connection succeeded in downloading the request.
-    NSLog( @"Succeeded! Received %d bytes of data", [requireddata length] );
-    NSDictionary *data = [NSJSONSerialization JSONObjectWithData:requireddata options:0 error:nil];
-    NSLog(@"%@",[data objectForKey:@"name"]);
-    if([data objectForKey:@"name"] != NULL)
-    {
-        if([[data objectForKey:@"role"] isEqualToString:@"user"])
-        {
-            [self performSegueWithIdentifier:@"userseque" sender:data];
-        }
-        else if([[data objectForKey:@"role"] isEqualToString:@"user"])
-        {
-            [self performSegueWithIdentifier:@"companyseque" sender:data];
-        }
-    }
-}
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSDictionary *)data{
     if([[data objectForKey:@"role"] isEqualToString:@"user"])
     {

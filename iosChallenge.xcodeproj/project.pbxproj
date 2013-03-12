@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01439A2716EF2739003A00B3 /* Const.m in Sources */ = {isa = PBXBuildFile; fileRef = 01439A2616EF2739003A00B3 /* Const.m */; };
+		01439A2E16EF28E0003A00B3 /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = 01439A2D16EF28E0003A00B3 /* Service.m */; };
+		01439A3116EF2938003A00B3 /* ServerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 01439A3016EF2938003A00B3 /* ServerModel.m */; };
 		014B92E116EB997D007F82FD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014B92E016EB997D007F82FD /* UIKit.framework */; };
 		014B92E316EB997D007F82FD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014B92E216EB997D007F82FD /* Foundation.framework */; };
 		014B92E516EB997D007F82FD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014B92E416EB997D007F82FD /* CoreGraphics.framework */; };
@@ -37,6 +40,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01439A2516EF2739003A00B3 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
+		01439A2616EF2739003A00B3 /* Const.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Const.m; sourceTree = "<group>"; };
+		01439A2C16EF28E0003A00B3 /* Service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Service.h; sourceTree = "<group>"; };
+		01439A2D16EF28E0003A00B3 /* Service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Service.m; sourceTree = "<group>"; };
+		01439A2F16EF2938003A00B3 /* ServerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerModel.h; sourceTree = "<group>"; };
+		01439A3016EF2938003A00B3 /* ServerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerModel.m; sourceTree = "<group>"; };
 		014B92DC16EB997D007F82FD /* iosChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		014B92E016EB997D007F82FD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		014B92E216EB997D007F82FD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -225,6 +234,8 @@
 		015ED22316EF216F001E2E97 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				01439A2F16EF2938003A00B3 /* ServerModel.h */,
+				01439A3016EF2938003A00B3 /* ServerModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -232,6 +243,10 @@
 		015ED22416EF2177001E2E97 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				01439A2C16EF28E0003A00B3 /* Service.h */,
+				01439A2D16EF28E0003A00B3 /* Service.m */,
+				01439A2516EF2739003A00B3 /* Const.h */,
+				01439A2616EF2739003A00B3 /* Const.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -377,6 +392,9 @@
 				01B8810B16EBE0DF0058509D /* companymenuitems.m in Sources */,
 				01B8810F16EBE1A20058509D /* companydashboard.m in Sources */,
 				01B8811316EBFC0F0058509D /* Inqueue.m in Sources */,
+				01439A2716EF2739003A00B3 /* Const.m in Sources */,
+				01439A2E16EF28E0003A00B3 /* Service.m in Sources */,
+				01439A3116EF2938003A00B3 /* ServerModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
