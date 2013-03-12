@@ -8,7 +8,9 @@
 
 #import "Const.h"
 
+NSString *const LOGINURL    = @"http://saravananadar.com/jobfair/index.php?s=login";
+NSString *const SUCCESS     = @"Success";
+NSString *const FAILURE     = @"Failure";
 @implementation Const
 
-NSString *const ECSlidingViewUnderRightWillAppear    = @"http://saravananadar.com/jobfair/index.php?s=login";
 @end

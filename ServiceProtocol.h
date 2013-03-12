@@ -10,4 +10,6 @@
 
 @protocol ServiceProtocol <NSObject>
 
+-(void) ServiceRequestComplete:(NSDictionary*) response serviceStatus:(NSString*) status;
+
 @end

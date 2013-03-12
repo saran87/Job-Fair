@@ -57,10 +57,6 @@ int movementDistance = 130;
 - (void) animateTextField: (UITextField*) textField up: (BOOL) up
 {
     
-    
-    
-    
-    
     if(!isWide)
     {
        
@@ -77,8 +73,6 @@ int movementDistance = 130;
     [UIView setAnimationDuration: movementDuration];
     self.view.frame = CGRectOffset(self.view.frame, 0, movement);
     [UIView commitAnimations];
-    
-    
 }
 
 
@@ -99,7 +93,23 @@ int movementDistance = 130;
 
 -(void)ServiceRequestComplete:(NSDictionary *)response serviceStatus:(NSString *)status{
     
-    NSLog(@"%@",response);
+    NSLog(@"Recieved :%@",response);
+    
+    NSLog(@"%@",[response objectForKey:@"name"]);
+    if([response objectForKey:@"name"] != NULL)
+    {
+            
+            if([[response objectForKey:@"role"] isEqualToString:@"user"])
+            {
+                [self performSegueWithIdentifier:@"userseque" sender:response];
+            }
+        
+            else if([[response objectForKey:@"role"] isEqualToString:@"user"])
+            {
+                    [self performSegueWithIdentifier:@"companyseque" sender:response];
+                        
+            }
+    }
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSDictionary *)data{
     if([[data objectForKey:@"role"] isEqualToString:@"user"])
