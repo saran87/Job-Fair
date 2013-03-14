@@ -29,8 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"NAME controller:%@",[data objectForKey:@"name"]);
-    menuitems *usermenu = [self.storyboard instantiateViewControllerWithIdentifier:@"items"];
+   menuitems *usermenu = [self.storyboard instantiateViewControllerWithIdentifier:@"items"];
     usermenu.data = self.data;
     userdashboard *dashboard = [self.storyboard instantiateViewControllerWithIdentifier:@"Dashboard"];
     dashboard.data = self.data;

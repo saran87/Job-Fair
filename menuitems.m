@@ -22,11 +22,12 @@
 @synthesize data;
 @synthesize TopViewController;
 @synthesize controller;
-
+@synthesize _Applicant;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -43,14 +44,15 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     
-    self.menuitems = [NSArray arrayWithObjects:@"Dashboard", @"appliedjob", @"CompanyInfo", @"SignOut", nil];
-    [self.slidingViewController setAnchorRightRevealAmount:145.0f];
+    self.menuitems = [NSMutableArray arrayWithObjects:@"Dashboard", @"appliedjob",@"CompanyInfo", @"SignOut", nil];
+    self.controller = [[NSMutableArray alloc] init];
+   [self.slidingViewController setAnchorRightRevealAmount:145.0f];
     self.slidingViewController.underLeftWidthLayout = ECFullWidth;
     self.tableView.tableFooterView = [[UIView alloc] init];
     usermenusviewcontroller *topview = (usermenusviewcontroller *)[self.slidingViewController topViewController];
     data = topview.data;
-    NSLog(@"data %@",data);
-    controller = [[NSMutableArray alloc] init];
+    NSLog(@"data %i",[self.controller count]);
+    [self CreateControllers];
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,7 +81,8 @@
 {
     NSString *cellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
+    if (cell == nil)
+    {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
     
@@ -141,52 +144,9 @@
     
     NSString *identifier = [NSString stringWithFormat:@"%@", [self.menuitems objectAtIndex:indexPath.row]];
    
-    if([identifier isEqual:[self.menuitems objectAtIndex:0]]){
-        if([controller count] < 1||[[controller objectAtIndex:0] isEqual:[NSNull null]]){
-            NSLog(@"HELP ME %@",data);
-            userdashboard *pop =(userdashboard *)[self.storyboard instantiateViewControllerWithIdentifier:identifier];
-            pop.data = self.data;
-           
-            [controller addObject:pop];
-        }
-        NSLog(@"OBJECT %@",[controller objectAtIndex:0]);
-        TopViewController = [controller objectAtIndex:0];
-    }
-    else if([identifier isEqualToString:@"appliedjob"]){
-        if([controller count] <2 ||[[controller objectAtIndex:1] isEqual:[NSNull null]]){
-            NSLog(@"HELP ME %@",data);
-            AppliedJob *pop =(AppliedJob *)[self.storyboard instantiateViewControllerWithIdentifier:identifier];
-            pop.data = self.data;
-            
-            [controller addObject:pop];
-        }
-       
-        TopViewController = [controller objectAtIndex:1];
-    }
-    else if([identifier isEqualToString:@"CompanyInfo"]){
-        if([controller count] < 3||[[controller objectAtIndex:2] isEqual:[NSNull null]]){
-            NSLog(@"HELP ME %@",data);
-            CompanyInfo *pop =(CompanyInfo *)[self.storyboard instantiateViewControllerWithIdentifier:identifier];
-            pop.data = self.data;
-            
-            [controller addObject:pop];
-        }
-        NSLog(@"OBJECT %@",[controller objectAtIndex:2]);
-        TopViewController = [controller objectAtIndex:2];
-    }
-    else if([identifier isEqualToString:@"SignOut"]){
-        if([controller count] < 4||[[controller objectAtIndex:3] isEqual:[NSNull null]]){
-            NSLog(@"HELP ME %@",data);
-            ViewController *pop =(ViewController *)[self.storyboard instantiateViewControllerWithIdentifier:identifier];
-                [controller addObject:pop];
-        }
-        NSLog(@"OBJECT %@",[controller objectAtIndex:3]);
-        TopViewController = [controller objectAtIndex:3];
-        
-    }
-    NSLog(@"I AM OUT %@",[TopViewController class]);
-
-    [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
+        int index = [self.menuitems indexOfObject:identifier];
+        TopViewController = [self.controller objectAtIndex:index];
+        [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
         CGRect frame = self.slidingViewController.topViewController.view.frame;
         self.slidingViewController.topViewController = TopViewController;
         self.slidingViewController.topViewController.view.frame = frame;
@@ -206,5 +166,20 @@
         }
     }
     return @"";
+}
+-(void)CreateControllers{
+ 
+    for(int i = 0;i < [self.menuitems count]; i++)
+    {
+    
+        NSString *identifier = [NSString stringWithFormat:@"%@", [self.menuitems objectAtIndex:i]];
+        userdashboard *pop =(userdashboard *)[self.storyboard instantiateViewControllerWithIdentifier:identifier];
+        if(![identifier isEqualToString:@"SignOut"])
+        {
+            pop.data = data;
+        }
+        [self.controller addObject:pop];
+    }
+    
 }
 @end

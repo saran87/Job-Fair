@@ -1,16 +1,13 @@
 //
-//  Const.h
+//  Organization.m
 //  iosChallenge
 //
 //  Created by Roshan Balaji Nindrai SenthilNathan on 3/12/13.
 //  Copyright (c) 2013 Roshan Balaji Nindrai SenthilNathan. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Organization.h"
 
-@interface Const : NSObject
+@implementation Organization
 
-extern NSString *const LOGINURL;
-extern NSString *const SUCCESS;
-extern NSString *const FAILURE;
 @end

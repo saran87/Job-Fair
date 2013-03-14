@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Service.h"
+#import "Applicant.h"
+#import "Organization.h"
 @interface ViewController : UIViewController <UITextFieldDelegate, NSURLConnectionDelegate, ServiceProtocol>
 @property (weak, nonatomic) IBOutlet UIButton *signin;
 @property (weak, nonatomic) IBOutlet UITextField *password;
@@ -15,6 +17,9 @@
 @property (strong, nonatomic) NSMutableData * requireddata;
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic,strong) Service* service;
+@property (nonatomic,strong) Applicant* applicant;
+@property (nonatomic,strong) Organization* organization;
+@property (strong, nonatomic) NSMutableDictionary *dic;
 - (IBAction)release:(id)sender;
 
 - (IBAction)signIn:(id)sender;

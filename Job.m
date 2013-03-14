@@ -7,8 +7,11 @@
 //
 
 #import "Job.h"
+@implementation Job
 
-@implementation Job{
+-(NSMutableDictionary *)initwithUserID:(NSNumber *)user_id{
+    // ping server with user_id
     
+    return nil;
 }
 @end

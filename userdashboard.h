@@ -9,14 +9,21 @@
 #import <UIKit/UIKit.h>
 #import "usermenusviewcontroller.h"
 #import "PieChart.h"
+#import "Applicant.h"
+#import "Service.h"
 @interface userdashboard : UIViewController
 @property (strong,nonatomic) UIButton *menubutton;
-@property (weak, nonatomic) IBOutlet UILabel *label;
-@property (strong,atomic) NSDictionary *data;
+@property (weak, nonatomic) IBOutlet UILabel *date;
+@property (strong,atomic) NSMutableDictionary *data;
+@property (strong,atomic) NSMutableArray *skills;
+@property (strong,atomic) Applicant *_Applicant;
 @property (strong, nonatomic)usermenusviewcontroller *userview;
+@property (strong, nonatomic) IBOutlet UILabel *Percentage_potential;
 @property (nonatomic,strong) IBOutlet PieChart *Chart;
-@property (weak, nonatomic) IBOutlet UILabel *name;
-@property (weak, nonatomic) IBOutlet UILabel *role;
-@property (strong, nonatomic)UITableView *table;
+@property (strong, nonatomic) IBOutlet UILabel *Percentage_Applied;
+@property (weak, nonatomic) IBOutlet UILabel *major;
+@property (weak, nonatomic) IBOutlet UIView *Grey;
+@property (strong, nonatomic) IBOutlet UITableView *SkillTable;
+@property (nonatomic,strong) Service* service;
 
 @end

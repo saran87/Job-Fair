@@ -16,5 +16,5 @@
     NSString* _companyProfile;
     bool _status;
 }
-
+-(NSMutableDictionary *)initwithUserID:(NSNumber *)user_id;
 @end

@@ -1,5 +1,5 @@
 //
-//  Const.h
+//  ServerModel.h
 //  iosChallenge
 //
 //  Created by Roshan Balaji Nindrai SenthilNathan on 3/12/13.
@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Const : NSObject
+@interface ServerModel : NSObject 
 
-extern NSString *const LOGINURL;
-extern NSString *const SUCCESS;
-extern NSString *const FAILURE;
+@end
+@protocol serverCompleteDelegate
+-(void) finished;
 @end

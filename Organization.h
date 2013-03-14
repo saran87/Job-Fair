@@ -1,5 +1,5 @@
 //
-//  Const.h
+//  Organization.h
 //  iosChallenge
 //
 //  Created by Roshan Balaji Nindrai SenthilNathan on 3/12/13.
@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Const : NSObject
+@interface Organization : NSObject
 
-extern NSString *const LOGINURL;
-extern NSString *const SUCCESS;
-extern NSString *const FAILURE;
 @end

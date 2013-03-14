@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Applicant.h"
 @interface Inqueue : UIViewController
 @property (strong,nonatomic) UIButton *menubutton;
-@property (strong,nonatomic) NSDictionary *data;
+@property (strong,nonatomic) Applicant *data;
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (strong, nonatomic) IBOutlet UITableView *List;
 

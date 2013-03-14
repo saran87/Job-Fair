@@ -1,16 +1,18 @@
 //
-//  Const.h
+//  ServerModel.m
 //  iosChallenge
 //
 //  Created by Roshan Balaji Nindrai SenthilNathan on 3/12/13.
 //  Copyright (c) 2013 Roshan Balaji Nindrai SenthilNathan. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "ServerModel.h"
 
-@interface Const : NSObject
+@implementation ServerModel{
+    
+}
+-(void) finished{
+    
+}
 
-extern NSString *const LOGINURL;
-extern NSString *const SUCCESS;
-extern NSString *const FAILURE;
 @end

@@ -10,6 +10,8 @@
 #import "usermenusviewcontroller.h"
 #import "companymenusviewcontroller.h"
 #import "menuitems.h"
+#import "Applicant.h"
+#import "Service.h"
 #define movementDuration .3
 #define isWide ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 @interface ViewController ()
@@ -23,6 +25,9 @@
 @synthesize requireddata;
 @synthesize connection;
 @synthesize service;
+@synthesize applicant;
+@synthesize organization;
+@synthesize dic;
 bool keyboardIsShown = NO;
 int movement = 0;
 int movementDistance = 130;
@@ -32,6 +37,7 @@ int movementDistance = 130;
     [super viewDidLoad];
     username.delegate = self;
     password.delegate = self;
+    self.dic = [[NSMutableDictionary alloc]init];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -82,7 +88,7 @@ int movementDistance = 130;
 
 - (IBAction)signIn:(id)sender {
     
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+   
     [dic setObject: username.text forKey:@"email"];
     [dic setObject:password.text forKey:@"password"];
     
@@ -93,35 +99,36 @@ int movementDistance = 130;
 
 -(void)ServiceRequestComplete:(NSDictionary *)response serviceStatus:(NSString *)status{
     
-    NSLog(@"Recieved :%@",response);
-    
-    NSLog(@"%@",[response objectForKey:@"name"]);
-    if([response objectForKey:@"name"] != NULL)
+   
+    if([status isEqualToString:SUCCESS])
     {
-            
+        
             if([[response objectForKey:@"role"] isEqualToString:@"user"])
             {
-                [self performSegueWithIdentifier:@"userseque" sender:response];
+                    applicant = [[Applicant alloc] initwithProfile:response];
+                    [self performSegueWithIdentifier:@"userseque" sender:self];
             }
         
             else if([[response objectForKey:@"role"] isEqualToString:@"user"])
             {
-                    [self performSegueWithIdentifier:@"companyseque" sender:response];
+                    organization = [[Organization alloc] init];
+                    [self performSegueWithIdentifier:@"companyseque" sender:self];
                         
             }
     }
 }
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(NSDictionary *)data{
-    if([[data objectForKey:@"role"] isEqualToString:@"user"])
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(ViewController *)object{
+    
+    if(object.applicant != NULL)
     {
         usermenusviewcontroller *destination = (usermenusviewcontroller *)segue.destinationViewController;
-        destination.data = data;
+        destination.data = self.dic;
     }
-    else if([[data objectForKey:@"role"] isEqualToString:@"user"])
+    else
     {
-        NSLog(@"I AM IN");
-        companymenusviewcontroller *destination = (companymenusviewcontroller *)segue.       destinationViewController;
-        destination.data = data;
+        companymenusviewcontroller *destination = (companymenusviewcontroller *)segue.destinationViewController;
+        //destination.data = data;
     }
+   
 }
 @end

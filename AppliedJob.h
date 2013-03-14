@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface AppliedJob : UIViewController
+#import "Applicant.h"
+#import "Service.h"
+@interface AppliedJob : UIViewController <UITableViewDelegate>
 @property (strong,nonatomic) UIButton *menubutton;
-@property (strong,nonatomic) NSDictionary *data;
+@property (strong, nonatomic) IBOutlet UITableView *JobList;
+@property (strong,nonatomic) NSMutableDictionary *data;
+@property (strong,nonatomic) Applicant *_Applicant;
+@property (strong, nonatomic) NSMutableArray *list;
+@property (strong, nonatomic) Service *service;
+
 @end

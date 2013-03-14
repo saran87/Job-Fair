@@ -18,6 +18,8 @@
 
 @implementation companymenuitems
 @synthesize data;
+@synthesize TopViewController;
+@synthesize controller;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -128,34 +130,14 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     
-    id newTopViewController;
+    
     NSString *identifier = [NSString stringWithFormat:@"%@", [self.menuitems objectAtIndex:indexPath.row]];
     
-    if([identifier isEqual:[self.menuitems objectAtIndex:0]]){
-        NSLog(@"HELP ME %@",data);
-        newTopViewController = [[companydashboard alloc]init];
-        companydashboard *pop =(companydashboard *)[self.storyboard instantiateViewControllerWithIdentifier:identifier];
-        pop.data = self.data;
-        newTopViewController = pop;
-        NSLog(@"%@",pop.data);
-    }
-    else if([identifier isEqualToString:@"In queue"]){
-        
-        newTopViewController = [[Inqueue alloc]init];
-        Inqueue *pop =[self.storyboard instantiateViewControllerWithIdentifier:identifier];
-        pop.data = self.data;
-        newTopViewController = pop;
-        
-    }
-   else if([identifier isEqualToString:@"SignOut"]){
-        newTopViewController = [[ViewController alloc]init];
-        ViewController *Controller = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
-        newTopViewController = Controller;
-        
-    }
-       [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
+    int index = [self.menuitems indexOfObject:identifier];
+    TopViewController = [self.controller objectAtIndex:index];
+    [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
         CGRect frame = self.slidingViewController.topViewController.view.frame;
-        self.slidingViewController.topViewController = newTopViewController;
+        self.slidingViewController.topViewController = TopViewController;
         self.slidingViewController.topViewController.view.frame = frame;
         [self.slidingViewController resetTopView];
     }];
@@ -175,5 +157,19 @@
     }
     return @"";
 }
-
+-(void)CreateControllers{
+    
+    for(int i = 0;i < [self.menuitems count]; i++)
+    {
+        
+        NSString *identifier = [NSString stringWithFormat:@"%@", [self.menuitems objectAtIndex:i]];
+        companydashboard *pop =(companydashboard *)[self.storyboard instantiateViewControllerWithIdentifier:identifier];
+        if(![identifier isEqualToString:@"SignOut"])
+        {
+            pop.data = data;
+        }
+        [self.controller addObject:pop];
+    }
+    
+}
 @end

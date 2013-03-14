@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface companymenuitems : UITableViewController
+@property (strong,nonatomic) UIViewController* TopViewController;
 @property (strong, nonatomic)NSMutableArray *menuitems;
 @property (strong,nonatomic) NSDictionary *data;
+@property (strong,nonatomic) NSMutableArray* controller;
 @end

@@ -43,7 +43,7 @@
     [menubutton  setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
     [menubutton  addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.label.text = [data objectForKey:@"name"];
+    self.label.text = data.fname;
     [self.view addSubview:self.menubutton ];
     
 }

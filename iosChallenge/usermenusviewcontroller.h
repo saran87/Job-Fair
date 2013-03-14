@@ -7,7 +7,7 @@
 //
 
 #import "ECSlidingViewController.h"
-
+#import "Applicant.h"
 @interface usermenusviewcontroller : ECSlidingViewController
-@property (strong,nonatomic) NSDictionary *data;
+@property (strong,nonatomic) NSMutableDictionary *data;
 @end

@@ -11,7 +11,7 @@
 }
 
 @property(nonatomic,strong) NSNumber* PieData;
-
--(void)initWithPieData:(NSNumber*) PieData;
+@property(nonatomic,strong) NSNumber* PieDataTotal;
+-(void)initWithPieData:(NSNumber*) PieData:(NSNumber*) _PieDataTotal;
 
 @end
