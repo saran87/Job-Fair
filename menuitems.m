@@ -13,6 +13,7 @@
 #import "CompanyInfo.h"
 #import "ViewController.h"
 #import "usermenusviewcontroller.h"
+#import <CoreMotion/CoreMotion.h>
 @interface menuitems ()
 
 @end
@@ -23,6 +24,7 @@
 @synthesize TopViewController;
 @synthesize controller;
 @synthesize _Applicant;
+@synthesize Table;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -32,7 +34,9 @@
     }
     return self;
 }
-
+-(BOOL)canBecomeFirstResponder{
+    return YES;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -44,7 +48,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     
-    self.menuitems = [NSMutableArray arrayWithObjects:@"Dashboard", @"appliedjob",@"CompanyInfo", @"SignOut", nil];
+    self.menuitems = [NSMutableArray arrayWithObjects:@"Dashboard", @"Appliedjob", @"SignOut", nil];
     self.controller = [[NSMutableArray alloc] init];
    [self.slidingViewController setAnchorRightRevealAmount:145.0f];
     self.slidingViewController.underLeftWidthLayout = ECFullWidth;
@@ -53,6 +57,7 @@
     data = topview.data;
     NSLog(@"data %i",[self.controller count]);
     [self CreateControllers];
+    self.Table.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"TableBG.png"] ];
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,7 +65,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
+    NSLog(@"BECAME FIRST RESPONDER");
+    [self becomeFirstResponder];
+    
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -68,6 +78,16 @@
 
     // Return the number of sections.
     return 1;
+}
+-(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
+    NSLog(@"SHAKE!!!!!");
+     TopViewController = [self.slidingViewController topViewController];
+    [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
+        CGRect frame = self.slidingViewController.topViewController.view.frame;
+        self.slidingViewController.topViewController = TopViewController;
+        self.slidingViewController.topViewController.view.frame = frame;
+        [self.slidingViewController resetTopView];
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

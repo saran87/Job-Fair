@@ -13,5 +13,6 @@
 @property (strong,atomic) NSMutableDictionary *data;
 @property (strong, atomic) Applicant *_Applicant;
 @property (strong,nonatomic) UIViewController* TopViewController;
+@property (strong, nonatomic) IBOutlet UITableView *Table;
 @property (strong,nonatomic) NSMutableArray* controller;
 @end

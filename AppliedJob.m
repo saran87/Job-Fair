@@ -10,10 +10,10 @@
 #import "ECSlidingViewController.h"
 #import "menuitems.h"
 #import "CompanyInfo.h"
+#import <CoreMotion/CoreMotion.h>
+
 @interface AppliedJob ()
-
 @end
-
 @implementation AppliedJob
 @synthesize menubutton;
 @synthesize data;
@@ -30,8 +30,15 @@
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    self.service = [[Service   alloc]init];
+    self.service.delegate = self;
+    NSLog(@"NAME at user:%@",data);
+    [self.service MakeCall:data ConnectionString:LOGINURL];
+    [self becomeFirstResponder];
   
+}
+-(void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event{
+    
 }
 - (void)viewDidLoad
 {
@@ -56,10 +63,7 @@
     
     self.JobList.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.menubutton ];
-    self.service = [[Service   alloc]init];
-    self.service.delegate = self;
-    NSLog(@"NAME at user:%@",data);
-    [self.service MakeCall:data ConnectionString:LOGINURL];
+   
     
 }
 
@@ -105,7 +109,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"company" sender:data];
+  
+    CompanyInfo *TopViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CompanyInfo"];
+    TopViewController.data = self.data;
+   
+        CGRect frame = self.slidingViewController.topViewController.view.frame;
+        self.slidingViewController.topViewController = TopViewController;
+        self.slidingViewController.topViewController.view.frame = frame;
+        [self.slidingViewController resetTopView];
+    
+
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -123,4 +136,12 @@
     [self.JobList reloadData];
 }
 
+-(BOOL)canBecomeFirstResponder{
+    
+    return YES;
+}
+
+-(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
+    [self.slidingViewController anchorTopViewTo:ECRight];
+}
 @end

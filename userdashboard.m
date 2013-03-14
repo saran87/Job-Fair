@@ -13,6 +13,7 @@
 #import "Const.h"
 #import "PieChart.h"
 #import "Applicant.h"
+#import <CoreMotion/CoreMotion.h>
 @interface userdashboard ()
 
 @end
@@ -28,6 +29,11 @@
 @synthesize Chart;
 @synthesize _Applicant;
 @synthesize service;
+
+-(BOOL)canBecomeFirstResponder{
+   
+    return YES;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -36,6 +42,14 @@
     }
     
     return self;
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.service = [[Service   alloc]init];
+    self.service.delegate = self;
+    NSLog(@"NAME at user:%@",data);
+    [self.service MakeCall:data ConnectionString:LOGINURL];
+   
 }
 
 - (void)viewDidLoad
@@ -58,8 +72,13 @@
     self.service.delegate = self;
     NSLog(@"NAME at user:%@",data);
       [self.service MakeCall:data ConnectionString:LOGINURL];
-       
+}
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
+    NSLog(@"BECAME FIRST RESPONDER");
+    [self becomeFirstResponder];
+    
 }
 
 - (IBAction)revealMenu:(id)sender
@@ -92,7 +111,9 @@
     self.SkillTable.backgroundColor = [UIColor clearColor];
     [self.SkillTable reloadData];
 }
-
+-(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
+   [self.slidingViewController anchorTopViewTo:ECRight];
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     NSLog(@"TABLE!!!!!!!!");

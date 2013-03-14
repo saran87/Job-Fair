@@ -33,6 +33,22 @@
 {
     [super viewDidLoad];
     NSLog(@"LOADED");
+    self.view.layer.shadowOpacity = 0.75f;
+    self.view.layer.shadowRadius = 10.0f;
+    self.view.layer.shadowColor = [UIColor blackColor].CGColor;
+    if (![self.slidingViewController.underLeftViewController isKindOfClass:[menuitems class]]) {
+        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"items"];
+        
+        NSLog(@"BREAK%@",self.slidingViewController.panGesture);
+    }
+    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+    NSLog(@"BREAK");
+    NSLog(@"BREAK");
+    self.menubutton = [UIButton buttonWithType:UIButtonTypeCustom];
+    menubutton .frame = CGRectMake(8, 10, 34, 24);
+    //[menubutton  setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
+    [menubutton  addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.menubutton ];
     self.service = [[Service   alloc]init];
     self.service.delegate = self;
    [self.service MakeCall:data ConnectionString:LOGINURL];
@@ -57,17 +73,18 @@
     self.MenuTittle.text = self._Applicant.jobtittle;
     [self.MenuTittle reloadInputViews];
 }
-- (IBAction)Back:(id)sender {
+
+-(BOOL)canBecomeFirstResponder{
     
-    [self performSegueWithIdentifier:@"company" sender:data];
+    return YES;
 }
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    NSLog(@"segue");
-    NSLog(@"DATA%@",data);
-    AppliedJob *dest = (AppliedJob *)segue.destinationViewController;
-    NSLog(@"DESTINATION %@", dest);
-    dest.data = data;
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
+    NSLog(@"BECAME FIRST RESPONDER");
+    [self becomeFirstResponder];
     
+}
+-(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
+    [self.slidingViewController anchorTopViewTo:ECRight];
 }
 @end
