@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Applicant.h"
 #import "Service.h"
-@interface Inqueue : UIViewController <UITableViewDelegate>
+@interface Inqueue : UIViewController <UITableViewDelegate,ServiceProtocol>
 @property (strong,nonatomic) UIButton *menubutton;
 @property (strong,nonatomic) Applicant *_Applicant;
 @property (weak, nonatomic) IBOutlet UILabel *label;

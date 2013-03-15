@@ -30,6 +30,7 @@
 @synthesize dic;
 @synthesize notification;
 @synthesize data;
+@synthesize myNewRunLoop;
 bool keyboardIsShown = NO;
 int movement = 0;
 int movementDistance = 130;
@@ -40,7 +41,11 @@ int movementDistance = 130;
     username.delegate = self;
     password.delegate = self;
     self.dic = [[NSMutableDictionary alloc]init];
-    [self setNotification];
+  
+    myNewRunLoop = dispatch_queue_create("com.apple.MyQueue", NULL);
+    dispatch_async(myNewRunLoop, ^{
+        [self runBackground];
+    });
    
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -151,8 +156,13 @@ int movementDistance = 130;
     notification.soundName = UILocalNotificationDefaultSoundName;
     notification.applicationIconBadgeNumber = 1;
     [[UIApplication sharedApplication] scheduleLocalNotification:self.notification];
-      
     
-    
+}
+-(void) runBackground{
+    printf("Do some work here.\n");
+    //[self setNotification];
+    dispatch_async(myNewRunLoop, ^{
+        [self runBackground];
+    });
 }
 @end
