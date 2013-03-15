@@ -30,6 +30,7 @@
 @synthesize dic;
 @synthesize notification;
 @synthesize data;
+@synthesize myNewRunLoop;
 bool keyboardIsShown = NO;
 int movement = 0;
 int movementDistance = 130;
@@ -40,8 +41,12 @@ int movementDistance = 130;
     username.delegate = self;
     password.delegate = self;
     self.dic = [[NSMutableDictionary alloc]init];
-    [self setNotification];
-   
+    
+    myNewRunLoop = dispatch_queue_create("com.apple.MyQueue", NULL);
+    dispatch_async(myNewRunLoop, ^{
+        [self runBackground];
+    });
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -69,7 +74,7 @@ int movementDistance = 130;
     
     if(!isWide)
     {
-       
+        
         movement = (up ? -movementDistance : movementDistance);
     }
     else
@@ -92,7 +97,7 @@ int movementDistance = 130;
 
 - (IBAction)signIn:(id)sender {
     
-   
+    
     [dic setObject: username.text forKey:@"email"];
     [dic setObject:password.text forKey:@"password"];
     
@@ -102,25 +107,26 @@ int movementDistance = 130;
 }
 
 -(void)ServiceRequestComplete:(NSDictionary *)response serviceStatus:(NSString *)status{
+    NSLog(@"RECIEVED ENTRY");
     
-   
     if([status isEqualToString:SUCCESS])
     {
+        NSLog(@"%@",[[response objectForKey:@"data"] objectForKey:@"role" ]);
+       if([[[response objectForKey:@"data"] objectForKey:@"role"] isEqualToString:@"user"])
+        {
+            NSLog(@"User Entered");
+            applicant = [[Applicant alloc] initwithProfile:response];
+            [self.dic setObject:[[response objectForKey:@"data"] objectForKey:@"id_users" ] forKey:@"userid"];
+            [self performSegueWithIdentifier:@"userseque" sender:self];
+        }
         
-            if([[response objectForKey:@"role"] isEqualToString:@"user"])
-            {
-                    NSLog(@"User Entered");
-                    applicant = [[Applicant alloc] initwithProfile:response];
-                   [self.dic setObject:[response objectForKey:@"id_users"] forKey:@"userid"];
-                    [self performSegueWithIdentifier:@"userseque" sender:self];
-            }
-        
-            else if([[response objectForKey:@"role"] isEqualToString:@"company"])
-            {
-                    organization = [[Organization alloc] init];
-                    [self performSegueWithIdentifier:@"companyseque" sender:self];
-                        
-            }
+        else if([[[response objectForKey:@"data"] objectForKey:@"role" ] isEqualToString:@"company"])
+        {
+            organization = [[Organization alloc] init];
+            [self.dic setObject:[[response objectForKey:@"data"] objectForKey:@"id_users" ] forKey:@"userid"];
+            [self performSegueWithIdentifier:@"companyseque" sender:self];
+            
+        }
     }
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(ViewController *)object{
@@ -135,24 +141,31 @@ int movementDistance = 130;
         companymenusviewcontroller *destination = (companymenusviewcontroller *)segue.destinationViewController;
         destination.data = self.dic;
     }
-   
+    
 }
 -(void)setNotification{
     self.service = [[Service   alloc]init];
     self.service.delegate = self;
     NSLog(@"NAME at user:%@",data);
     [self.service MakeCall:data ConnectionString:LOGINURL];
-       NSLog(@"NOTIFCATION SET");
+    NSLog(@"NOTIFCATION SET");
     self.notification = [[UILocalNotification alloc] init ];
-    self.notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:15];
+    self.notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:1];
     self.notification.timeZone = [NSTimeZone defaultTimeZone];
     self.notification.alertBody = @"Welcome to Smart Jobs";
     self.notification.alertAction = @"Check-out";
     notification.soundName = UILocalNotificationDefaultSoundName;
     notification.applicationIconBadgeNumber = 1;
     [[UIApplication sharedApplication] scheduleLocalNotification:self.notification];
-      
     
-    
+}
+-(void) runBackground{
+    printf("Do some work here.\n");
+    //[self setNotification];
+    dispatch_async(myNewRunLoop, ^{
+        
+        [self runBackground];
+        sleep(5);
+    });
 }
 @end

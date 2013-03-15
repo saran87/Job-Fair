@@ -73,7 +73,7 @@
 }
 -(void)ServiceRequestComplete:(NSDictionary *)response serviceStatus:(NSString *)status{
     self.organization = [[Organization alloc] initwithProfile:response];
-    NSLog(@"%@",response);
+    NSLog(@"RESPONSE %@",response);
     self.Date.text = @"7/9/2012";
    [self.company setTitle:self.organization.website forState:UIControlStateNormal];
      NSLog(@"%@",self.company.titleLabel.text);

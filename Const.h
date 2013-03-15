@@ -14,4 +14,7 @@ extern NSString *const LOGINURL;
 extern NSString *const SUCCESS;
 extern NSString *const FAILURE;
 extern NSString *const JOB;
+extern NSString *const APPLY;
+extern NSString *const ENQUEUE;
+extern NSString *const QUEUED;
 @end

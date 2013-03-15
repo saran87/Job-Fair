@@ -118,7 +118,7 @@
   
     CompanyInfo *TopViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CompanyInfo"];
     TopViewController.data = [self.jobdata objectAtIndex:indexPath.row];
-   
+    TopViewController._Applicant = data;
         CGRect frame = self.slidingViewController.topViewController.view.frame;
         self.slidingViewController.topViewController = TopViewController;
         self.slidingViewController.topViewController.view.frame = frame;

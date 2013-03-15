@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSMutableDictionary *dic;
 @property (strong, nonatomic) NSMutableDictionary *data;
 @property (strong, nonatomic) UILocalNotification *notification;
+@property (strong, nonatomic) dispatch_queue_t myNewRunLoop;
 - (IBAction)release:(id)sender;
 
 - (IBAction)signIn:(id)sender;

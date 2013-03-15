@@ -97,10 +97,12 @@
     
     NSLog(@"DATA RECIEVED%@",response);
     self._Applicant = [[Applicant alloc] initwithProfile:response];
+    NSLog(@"Application Profile%@",self._Applicant.fname);
     NSLog(@"NAME at response:%@",self._Applicant.fname);
     NSLog(@"NAME at dash:%@",self._Applicant.fname);
     self.Percentage_Applied.text = [NSString stringWithFormat:@"%.1f%%", 11.0];
     self.Percentage_potential.text = [NSString stringWithFormat:@"%.1f%%", 30.0];
+    NSLog(@"APPLIED MAJOR %@",_Applicant.major);
     self.major.text = _Applicant.major;
     self.date.text = @"7/9/2012";
     self.skills = [NSArray arrayWithObjects:@"C++",@"C",@"PHP", nil];

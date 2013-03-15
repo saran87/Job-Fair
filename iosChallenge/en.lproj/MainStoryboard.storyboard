@@ -302,32 +302,34 @@
             </objects>
             <point key="canvasLocation" x="-69" y="207"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="okg-PB-HEt">
+        <!--Table View Controller-->
+        <scene sceneID="9Se-aJ-Lcw">
             <objects>
-                <viewController id="PXi-rY-DU0" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mFn-jH-8DL">
+                <tableViewController id="a61-pV-4Wa" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Ltk-VS-lVG">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Company.png" id="Mfj-cI-BCU">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4qQ-ak-aHy">
-                                <rect key="frame" x="75" y="20" width="171" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RUp-q0-OTb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="LsY-uL-t75">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="a61-pV-4Wa" id="kqh-0A-GoI"/>
+                            <outlet property="delegate" destination="a61-pV-4Wa" id="djr-Zx-Vhz"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Qw-s8-gx4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="297" y="205"/>
+            <point key="canvasLocation" x="297" y="207"/>
         </scene>
         <!--Menuitems-->
         <scene sceneID="J8a-AC-fnv">
@@ -700,11 +702,27 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eGK-pp-NHS">
+                                <rect key="frame" x="233" y="12" width="70" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Inque">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="queue:" destination="adb-f4-OtX" eventType="touchUpInside" id="F0n-mB-iVf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="Address" destination="WrF-gM-NEW" id="0mb-0t-hyd"/>
+                        <outlet property="Enque" destination="eGK-pp-NHS" id="FLk-09-HEZ"/>
                         <outlet property="MenuTittle" destination="4ui-RB-iEL" id="gec-zK-oFU"/>
                         <outlet property="bground" destination="fmE-Zu-ide" id="HlE-N0-a0S"/>
                         <outlet property="city" destination="aj6-AD-fKb" id="dH7-fp-5fJ"/>
@@ -725,7 +743,6 @@
         <image name="Applicants in queue.png" width="640" height="960"/>
         <image name="AppliedJob.png" width="640" height="960"/>
         <image name="Apply.png" width="640" height="960"/>
-        <image name="Company.png" width="640" height="960"/>
         <image name="Dash.png" width="640" height="960"/>
         <image name="login.png" width="640" height="960"/>
     </resources>
@@ -741,8 +758,10 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CompanyInfo.h"/>
             <relationships>
                 <relationship kind="action" name="Apply:"/>
+                <relationship kind="action" name="queue:"/>
                 <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="Address" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="Enque" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="MenuTittle" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="bground" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="city" candidateClass="UILabel"/>
@@ -750,6 +769,7 @@
                 <relationship kind="outlet" name="jobdescription" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="jobtitle" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="quarter" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="queue" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="salary" candidateClass="UILabel"/>
             </relationships>
         </class>

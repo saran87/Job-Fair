@@ -55,9 +55,10 @@
     self.service = [[Service   alloc]init];
     self.service.delegate = self;
       NSMutableDictionary *newdata = [[NSMutableDictionary alloc] init];
-    NSLog(@"%@",data);
-    [newdata setObject:[data objectForKey:@"userid"] forKey:@"email"];
-    [self.service MakeCall:newdata ConnectionString:JOB];
+    [newdata setObject:[self.data objectForKey:@"userid"] forKey:@"userid"];
+    NSLog(@"INFO %@",newdata);
+    [self.service MakeCall:newdata ConnectionString:QUEUED];
+   
 }
 
 - (IBAction)revealMenu:(id)sender
@@ -81,7 +82,7 @@
 {
     
     // Return the number of rows in the section.
-    return [self.data count];
+    return [self.lister count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -93,7 +94,6 @@
     }
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.lister objectAtIndex:indexPath.row]];
-    
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -120,15 +120,13 @@
     
 }
 -(void)ServiceRequestComplete:(NSDictionary *)response serviceStatus:(NSString *)status{
-    
-    NSLog(@"APPLIED JOB%@",response);
+   NSLog(@"APPLIED JOB%@",response);
     self.applicantdata = [response objectForKey:@"data"];
     NSLog(@"JOB  %@",self.applicantdata);
     self.lister = [[NSMutableArray alloc] init];
-    for(NSDictionary *dataIter in applicantdata)
+    for(NSDictionary *dataIter in self.applicantdata)
     {
-        NSLog(@"Company name RESPONSE %@",[dataIter objectForKey:@"companyName"]);
-        [self.lister addObject:[dataIter objectForKey:@"fname"]];
+       [self.lister addObject:[dataIter objectForKey:@"fname"]];
     }
 [self.List reloadData];
 }

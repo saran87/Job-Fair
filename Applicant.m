@@ -31,23 +31,25 @@
 
 -(Applicant *)initwithProfile: (NSDictionary *)userInformation
 {
-    GPA =[userInformation objectForKey:@"GPA"];
-    address = [userInformation objectForKey:@"address"];
-    age = [userInformation objectForKey:@"age"];
-    block = [userInformation objectForKey:@"block"];
-    city = [userInformation objectForKey:@"city"];
-    email = [userInformation objectForKey:@"email"];
-    fname = [userInformation objectForKey:@"fname"];
-    gender = [userInformation objectForKey:@"gender"];
-    jobtittle = [userInformation objectForKey:@"jobtitle"];
-    lname = [userInformation objectForKey:@"lname"];
-    major = [userInformation objectForKey:@"major"];
-    phone = [userInformation objectForKey:@"phone"];
-    quarter = [userInformation objectForKey:@"quarter"];
-    role = [userInformation objectForKey:@"role"];
-    state = [userInformation objectForKey:@"state"];
-    username = [userInformation objectForKey:@"username"];
-    user_id =[NSNumber numberWithInteger:[[userInformation objectForKey:@"id_users"] integerValue]];
+    GPA =[[userInformation objectForKey:@"data"] objectForKey:@"GPA" ];
+    address = [[userInformation objectForKey:@"data"] objectForKey:@"address" ];
+    age = [[userInformation objectForKey:@"data"] objectForKey:@"age" ];
+    block = [[userInformation objectForKey:@"data"] objectForKey:@"block" ];
+    city = [[userInformation objectForKey:@"data"] objectForKey:@"city" ];
+    email = [[userInformation objectForKey:@"data"] objectForKey:@"email" ];
+   
+    fname = [[userInformation objectForKey:@"data"] objectForKey:@"fname" ];
+    gender = [[userInformation objectForKey:@"data"] objectForKey:@"gender" ];;
+    jobtittle = [[userInformation objectForKey:@"data"] objectForKey:@"jobtitle" ];;
+    lname = [[userInformation objectForKey:@"data"] objectForKey:@"lname" ];;
+    major = [[userInformation objectForKey:@"data"] objectForKey:@"major" ];;
+    phone = [[userInformation objectForKey:@"data"] objectForKey:@"phone" ];;
+    quarter = [[userInformation objectForKey:@"data"] objectForKey:@"quarter" ];;
+    role = [[userInformation objectForKey:@"data"] objectForKey:@"role" ];
+    state = [[userInformation objectForKey:@"data"] objectForKey:@"state" ];
+    username = [[userInformation objectForKey:@"data"] objectForKey:@"username" ];
+    
+    user_id = [[userInformation objectForKey:@"data"] objectForKey:@"id_users" ];
     job = [NSMutableArray arrayWithObjects:@"Dashboard", @"appliedjob", @"SignOut", nil];
     
     return self;
