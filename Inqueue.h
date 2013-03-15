@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Applicant.h"
-@interface Inqueue : UIViewController
+#import "Service.h"
+@interface Inqueue : UIViewController <UITableViewDelegate>
 @property (strong,nonatomic) UIButton *menubutton;
-@property (strong,nonatomic) Applicant *data;
+@property (strong,nonatomic) Applicant *_Applicant;
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (strong, nonatomic) IBOutlet UITableView *List;
+@property (strong, nonatomic) Service *service;
+@property (strong, nonatomic) NSMutableArray *data;
 
 @end

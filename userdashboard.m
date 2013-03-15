@@ -29,7 +29,7 @@
 @synthesize Chart;
 @synthesize _Applicant;
 @synthesize service;
-
+@synthesize magenda;
 -(BOOL)canBecomeFirstResponder{
    
     return YES;
@@ -66,7 +66,8 @@
     menubutton .frame = CGRectMake(8, 10, 34, 24);
     //s[menubutton  setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
     [menubutton  addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
-    [self.Grey setBackgroundColor:[UIColor grayColor]];
+    [self.Grey setBackgroundColor:[UIColor yellowColor]];
+    [self.magenda setBackgroundColor:[UIColor redColor]];
     [self.view addSubview:self.menubutton];
    self.service = [[Service   alloc]init];
     self.service.delegate = self;
@@ -101,7 +102,7 @@
     self.Percentage_Applied.text = [NSString stringWithFormat:@"%.1f%%", 11.0];
     self.Percentage_potential.text = [NSString stringWithFormat:@"%.1f%%", 30.0];
     self.major.text = _Applicant.major;
-    self.date.text = _Applicant.fname;
+    self.date.text = @"7/9/2012";
     self.skills = [NSArray arrayWithObjects:@"C++",@"C",@"PHP", nil];
     NSNumber *pieData = [[NSNumber alloc] initWithFloat:11.0];
     NSNumber *pieDataTotal = [[NSNumber alloc] initWithFloat:30.0];
@@ -140,6 +141,7 @@
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.skills objectAtIndex:indexPath.row]];
     cell.textLabel.font = [UIFont systemFontOfSize:12];
     cell.textLabel.numberOfLines = 2;
+    cell.detailTextLabel.text = @"12%";
     return cell;
 }
 

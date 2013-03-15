@@ -11,8 +11,18 @@
 @interface CompanyInfo : UIViewController
 @property (strong,nonatomic) UIButton *menubutton;
 @property (strong, nonatomic) IBOutlet UILabel *MenuTittle;
-@property (strong,nonatomic) NSMutableDictionary *data;
+@property (strong,nonatomic) NSMutableArray *data;
 @property (strong, nonatomic) Service *service;
 @property (strong, nonatomic) Applicant *_Applicant;
-- (IBAction)Back:(id)sender;
+@property (strong, nonatomic) IBOutlet UILabel *jobtitle;
+@property (strong, nonatomic) IBOutlet UILabel *jobdescription;
+@property (strong, nonatomic) IBOutlet UILabel *city;
+@property (strong, nonatomic) IBOutlet UILabel *quarter;
+@property (strong, nonatomic) IBOutlet UILabel *salary;
+@property (strong, nonatomic) IBOutlet UILabel *gpa;
+@property (strong, nonatomic) IBOutlet UILabel *Address;
+@property (strong, nonatomic) IBOutlet UIImageView *bground;
+
+- (IBAction)Apply:(id)sender;
+
 @end

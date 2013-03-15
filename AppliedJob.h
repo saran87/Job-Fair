@@ -13,8 +13,10 @@
 @property (strong,nonatomic) UIButton *menubutton;
 @property (strong, nonatomic) IBOutlet UITableView *JobList;
 @property (strong,nonatomic) NSMutableDictionary *data;
+@property (strong,nonatomic) NSMutableDictionary *job;
 @property (strong,nonatomic) Applicant *_Applicant;
 @property (strong, nonatomic) NSMutableArray *list;
+@property (strong, nonatomic) NSMutableArray *jobdata;
 @property (strong, nonatomic) Service *service;
 
 @end

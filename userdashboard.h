@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *major;
 @property (weak, nonatomic) IBOutlet UIView *Grey;
 @property (strong, nonatomic) IBOutlet UITableView *SkillTable;
+@property (strong, nonatomic) IBOutlet UIView *magenda;
 @property (nonatomic,strong) Service* service;
 
 @end

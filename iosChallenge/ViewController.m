@@ -105,11 +105,13 @@ int movementDistance = 130;
         
             if([[response objectForKey:@"role"] isEqualToString:@"user"])
             {
+                    NSLog(@"User Entered");
                     applicant = [[Applicant alloc] initwithProfile:response];
+                   [self.dic setObject:[response objectForKey:@"id_users"] forKey:@"userid"];
                     [self performSegueWithIdentifier:@"userseque" sender:self];
             }
         
-            else if([[response objectForKey:@"role"] isEqualToString:@"user"])
+            else if([[response objectForKey:@"role"] isEqualToString:@"company"])
             {
                     organization = [[Organization alloc] init];
                     [self performSegueWithIdentifier:@"companyseque" sender:self];
@@ -127,7 +129,7 @@ int movementDistance = 130;
     else
     {
         companymenusviewcontroller *destination = (companymenusviewcontroller *)segue.destinationViewController;
-        //destination.data = data;
+        destination.data = self.dic;
     }
    
 }

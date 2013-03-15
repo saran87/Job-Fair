@@ -20,6 +20,7 @@
 @synthesize JobList;
 @synthesize list;
 @synthesize service;
+@synthesize jobdata;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -33,7 +34,11 @@
     self.service = [[Service   alloc]init];
     self.service.delegate = self;
     NSLog(@"NAME at user:%@",data);
-    [self.service MakeCall:data ConnectionString:LOGINURL];
+    NSMutableDictionary *newdata = [[NSMutableDictionary alloc] init];
+    [newdata setObject:[data objectForKey:@"userid"] forKey:@"userid"];
+     NSLog(@"NEWDATA at user:%@",data);
+    [self.service MakeCall:newdata ConnectionString:JOB];
+     
     [self becomeFirstResponder];
   
 }
@@ -100,7 +105,8 @@
     }
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.list objectAtIndex:indexPath.row]];
-    
+  
+    cell.detailTextLabel.text = [[self.jobdata objectAtIndex:indexPath.row] objectForKey:@"jobtitle"];
     return cell;
 }
 
@@ -111,7 +117,7 @@
 {
   
     CompanyInfo *TopViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CompanyInfo"];
-    TopViewController.data = self.data;
+    TopViewController.data = [self.jobdata objectAtIndex:indexPath.row];
    
         CGRect frame = self.slidingViewController.topViewController.view.frame;
         self.slidingViewController.topViewController = TopViewController;
@@ -120,20 +126,20 @@
     
 
 }
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    NSLog(@"segue");
-    NSLog(@"DATA%@",data);
-    CompanyInfo *dest = (CompanyInfo *)segue.destinationViewController;
-    dest.data = data;
-    
-}
+
 -(void)ServiceRequestComplete:(NSDictionary *)response serviceStatus:(NSString *)status{
+   
+    NSLog(@"JOB RESPONSE %@",response);
+    self.jobdata = [response objectForKey:@"data"];
+    NSLog(@"JOB  %@",self.jobdata);
+    self.list = [[NSMutableArray alloc] init];
+    for(NSDictionary *dataIter in jobdata)
+        {
+             NSLog(@"Company name RESPONSE %@",[dataIter objectForKey:@"companyName"]);
+                [self.list addObject:[dataIter objectForKey:@"companyName"]];
+        }
     
-    NSLog(@"DATA RECIEVED%@",response);
-    self._Applicant = [[Applicant alloc] initwithProfile:response];
-    self.list = self._Applicant.job;
-    [self.JobList reloadData];
+        [self.JobList reloadData];
 }
 
 -(BOOL)canBecomeFirstResponder{

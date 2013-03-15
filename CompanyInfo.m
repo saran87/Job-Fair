@@ -20,6 +20,13 @@
 @synthesize data;
 @synthesize _Applicant;
 @synthesize service;
+@synthesize jobtitle;
+@synthesize jobdescription;
+@synthesize city;
+@synthesize quarter;
+@synthesize salary;
+@synthesize gpa;
+@synthesize Address;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -49,11 +56,20 @@
     //[menubutton  setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
     [menubutton  addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.menubutton ];
-    self.service = [[Service   alloc]init];
-    self.service.delegate = self;
-   [self.service MakeCall:data ConnectionString:LOGINURL];
+    
+   
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    self.MenuTittle.text = [(NSDictionary *)data objectForKey:@"companyName"];
+    self.jobtitle.text = [(NSDictionary *)data objectForKey:@"jobtitle"];
+    self.Address.text = [(NSDictionary *)data objectForKey:@"address"];
+    self.gpa.text = [NSString stringWithFormat:@"%.2f",[[(NSDictionary *)data objectForKey:@"GPA"] floatValue]];
+    self.city.text = [(NSDictionary *)data objectForKey:@"city"];
+    self.salary.text = [NSString stringWithFormat:@"%.3f",[[(NSDictionary *)data objectForKey:@"salary"] floatValue]];
+    self.quarter.text = [(NSDictionary *)data objectForKey:@"quarter"];
+    self.jobdescription.text = [(NSDictionary *)data objectForKey:@"jobdescription"];
+}
 - (IBAction)revealMenu:(id)sender
 {
     [self.slidingViewController anchorTopViewTo:ECRight];
@@ -64,14 +80,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
--(void)ServiceRequestComplete:(NSDictionary *)response serviceStatus:(NSString *)status{
-    
-    NSLog(@"Roshan RECIEVED%@",response);
-    self._Applicant = [[Applicant alloc] initwithProfile:response];
-     NSLog(@"Roshan RECIEVED TITTLE%@",self._Applicant.address);
-    self.MenuTittle.text = self._Applicant.jobtittle;
-    [self.MenuTittle reloadInputViews];
 }
 
 -(BOOL)canBecomeFirstResponder{
@@ -86,5 +94,12 @@
 }
 -(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
     [self.slidingViewController anchorTopViewTo:ECRight];
+}
+- (IBAction)Apply:(id)sender {
+    [self.bground setImage:[UIImage imageNamed:@"Applied"]];
+    self.service = [[Service alloc]init];
+    self.service.delegate = self;
+    NSLog(@"NAME at user:%@",data);
+    [self.service MakeCall:data ConnectionString:JOB];
 }
 @end

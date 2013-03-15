@@ -17,6 +17,7 @@
 @synthesize menubutton;
 @synthesize data;
 @synthesize label;
+@synthesize service;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -40,11 +41,15 @@
     
     self.menubutton = [UIButton buttonWithType:UIButtonTypeCustom];
     menubutton .frame = CGRectMake(8, 10, 34, 24);
-    [menubutton  setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
+   // [menubutton  setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
     [menubutton  addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.label.text = data.fname;
+//    self.label.text = data.fname;
     [self.view addSubview:self.menubutton ];
+    self.service = [[Service alloc]init];
+    self.service.delegate = self;
+    NSLog(@"NAME at user:%@",data);
+    [self.service MakeCall:data ConnectionString:JOB];
     
 }
 
@@ -59,5 +64,56 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    
+    // Return the number of sections.
+    return 1;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    
+    // Return the number of rows in the section.
+    return [self.data count];
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *cellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+    }
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.data objectAtIndex:indexPath.row]];
+    
+    return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Navigation logic may go here. Create and push another view controller.
+    /*
+     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+     // ...
+     // Pass the selected object to the new view controller.
+     [self.navigationController pushViewController:detailViewController animated:YES];
+     */
+    
+    NSString *identifier = [NSString stringWithFormat:@"%@", [self.data objectAtIndex:indexPath.row]];
+    
+    //int index = [self.menuitems indexOfObject:identifier];
+   // TopViewController = [self.controller objectAtIndex:index];
+    [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
+        CGRect frame = self.slidingViewController.topViewController.view.frame;
+      // self.slidingViewController.topViewController = TopViewController;
+        self.slidingViewController.topViewController.view.frame = frame;
+        [self.slidingViewController resetTopView];
+    }];
+    
+    
+}
+-(void)ServiceRequestComplete:(NSDictionary *)response serviceStatus:(NSString *)status{
+    
+   
+}
 @end

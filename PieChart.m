@@ -37,7 +37,7 @@
     int radius = self.frame.size.height;
      CGPoint center;
     center.x = (self.frame.size.width/4)+5;
-    center.y = self.frame.size.height/2+13;
+    center.y = self.frame.size.height/2+8.5;
     // Set the circle outerline-colour
     CAShapeLayer *slice = [CAShapeLayer layer];
     slice.fillColor = [UIColor redColor].CGColor;
@@ -47,13 +47,13 @@
      NSLog(@"HOLLA %@%@",self.PieData,self.PieDataTotal);
      CGFloat denom = ([self.PieData floatValue] /[self.PieDataTotal floatValue])* 360.0;
     denom = 180.0/ denom;
-    [[UIColor grayColor] set];
+    [[UIColor yellowColor] set];
     CGContextAddArc(context, center.x, center.y, radius/3, 0.0, M_PI * 2.0, YES);
     // Draw
     CGContextFillPath(context);
     UIBezierPath *piePath = [UIBezierPath bezierPath];
     [piePath moveToPoint:center];
-    [[UIColor whiteColor] set];
+    [[UIColor redColor] set];
     [piePath addLineToPoint:CGPointMake(center.x + radius/3 * cosf(angle), center.y + radius/3 * sinf(angle))];
 
     [piePath addArcWithCenter:center radius:radius/3 startAngle:angle endAngle:2*M_PI-(M_PI/denom) clockwise:YES];

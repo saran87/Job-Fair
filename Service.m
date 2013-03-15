@@ -42,6 +42,7 @@
     
     
    }
+
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:
 (NSURLResponse *)response
 {
@@ -66,6 +67,7 @@
         // Connection succeeded in downloading the request.
         NSDictionary *data = [NSJSONSerialization JSONObjectWithData:requireddata options:0 error:nil];
         // call the delegate after the service call is done
+        NSLog(@"DATA ATE SERVER %@",data);
         [self.delegate ServiceRequestComplete:data serviceStatus:SUCCESS];
     }else{
         [self.delegate ServiceRequestComplete:nil serviceStatus:FAILURE];

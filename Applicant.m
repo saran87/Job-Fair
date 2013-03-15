@@ -31,7 +31,7 @@
 
 -(Applicant *)initwithProfile: (NSDictionary *)userInformation
 {
-    GPA =[NSNumber numberWithFloat:[[userInformation objectForKey:@"GPA"] floatValue]];
+    GPA =[userInformation objectForKey:@"GPA"];
     address = [userInformation objectForKey:@"address"];
     age = [userInformation objectForKey:@"age"];
     block = [userInformation objectForKey:@"block"];

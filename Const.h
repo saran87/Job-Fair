@@ -13,4 +13,5 @@
 extern NSString *const LOGINURL;
 extern NSString *const SUCCESS;
 extern NSString *const FAILURE;
+extern NSString *const JOB;
 @end

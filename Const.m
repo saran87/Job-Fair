@@ -11,7 +11,7 @@
 NSString *const LOGINURL    = @"http://saravananadar.com/jobfair/index.php?s=login";
 NSString *const SUCCESS     = @"Success";
 NSString *const FAILURE     = @"Failure";
-
+NSString *const JOB         = @"http://saravananadar.com/jobfair/index.php?s=login&action=getjoblist&type=json";
 @implementation Const
 
 @end

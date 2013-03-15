@@ -42,6 +42,7 @@
    companydashboard *topview = (companydashboard *)[self.slidingViewController topViewController];
     data = topview.data;
     NSLog(@"MY DATA %@",data);
+    [self controller];
 }
 
 - (void)didReceiveMemoryWarning
