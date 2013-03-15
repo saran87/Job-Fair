@@ -20,6 +20,8 @@
 @property (nonatomic,strong) Applicant* applicant;
 @property (nonatomic,strong) Organization* organization;
 @property (strong, nonatomic) NSMutableDictionary *dic;
+@property (strong, nonatomic) NSMutableDictionary *data;
+@property (strong, nonatomic) UILocalNotification *notification;
 - (IBAction)release:(id)sender;
 
 - (IBAction)signIn:(id)sender;

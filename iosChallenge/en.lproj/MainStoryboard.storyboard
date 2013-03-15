@@ -741,6 +741,7 @@
         <class className="AppliedJob" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AppliedJob.h"/>
             <relationships>
+                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="JobList" candidateClass="UITableView"/>
             </relationships>
         </class>
@@ -748,6 +749,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CompanyInfo.h"/>
             <relationships>
                 <relationship kind="action" name="Apply:"/>
+                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="Address" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="MenuTittle" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="bground" candidateClass="UIImageView"/>
@@ -765,6 +767,7 @@
         <class className="Inqueue" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/Inqueue.h"/>
             <relationships>
+                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="List" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="label" candidateClass="UILabel"/>
             </relationships>
@@ -786,6 +789,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/companydashboard.h"/>
             <relationships>
                 <relationship kind="action" name="HyperLink:"/>
+                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="Chart" candidateClass="PieChart"/>
                 <relationship kind="outlet" name="Date" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="SkillTable" candidateClass="UITableView"/>
@@ -811,6 +815,7 @@
         <class className="userdashboard" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/userdashboard.h"/>
             <relationships>
+                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="outlet" name="Chart" candidateClass="PieChart"/>
                 <relationship kind="outlet" name="Grey" candidateClass="UIView"/>
                 <relationship kind="outlet" name="Percentage_Applied" candidateClass="UILabel"/>

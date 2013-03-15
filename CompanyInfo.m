@@ -98,8 +98,6 @@
 - (IBAction)Apply:(id)sender {
     [self.bground setImage:[UIImage imageNamed:@"Applied"]];
     self.service = [[Service alloc]init];
-    self.service.delegate = self;
-    NSLog(@"NAME at user:%@",data);
-    [self.service MakeCall:data ConnectionString:JOB];
+  
 }
 @end

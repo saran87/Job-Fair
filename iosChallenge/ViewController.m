@@ -28,6 +28,8 @@
 @synthesize applicant;
 @synthesize organization;
 @synthesize dic;
+@synthesize notification;
+@synthesize data;
 bool keyboardIsShown = NO;
 int movement = 0;
 int movementDistance = 130;
@@ -38,6 +40,8 @@ int movementDistance = 130;
     username.delegate = self;
     password.delegate = self;
     self.dic = [[NSMutableDictionary alloc]init];
+    [self setNotification];
+   
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -132,5 +136,23 @@ int movementDistance = 130;
         destination.data = self.dic;
     }
    
+}
+-(void)setNotification{
+    self.service = [[Service   alloc]init];
+    self.service.delegate = self;
+    NSLog(@"NAME at user:%@",data);
+    [self.service MakeCall:data ConnectionString:LOGINURL];
+       NSLog(@"NOTIFCATION SET");
+    self.notification = [[UILocalNotification alloc] init ];
+    self.notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:15];
+    self.notification.timeZone = [NSTimeZone defaultTimeZone];
+    self.notification.alertBody = @"Welcome to Smart Jobs";
+    self.notification.alertAction = @"Check-out";
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    notification.applicationIconBadgeNumber = 1;
+    [[UIApplication sharedApplication] scheduleLocalNotification:self.notification];
+      
+    
+    
 }
 @end
