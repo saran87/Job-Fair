@@ -126,6 +126,7 @@
     NSString *identifier = [NSString stringWithFormat:@"%@", [self.menuitems objectAtIndex:indexPath.row]];
    
         int index = [self.menuitems indexOfObject:identifier];
+    NSLog(@"%@",menuitems);
         TopViewController = [self.controller objectAtIndex:index];
         [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
         CGRect frame = self.slidingViewController.topViewController.view.frame;

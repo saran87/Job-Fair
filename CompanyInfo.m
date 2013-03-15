@@ -11,6 +11,7 @@
 #import "menuitems.h"
 #import "Applicant.h"
 #import "AppliedJob.h"
+#import "companymenuitems.h"
 @interface CompanyInfo ()
 
 @end
@@ -43,8 +44,8 @@
     self.view.layer.shadowOpacity = 0.75f;
     self.view.layer.shadowRadius = 10.0f;
     self.view.layer.shadowColor = [UIColor blackColor].CGColor;
-    if (![self.slidingViewController.underLeftViewController isKindOfClass:[menuitems class]]) {
-        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"items"];
+    if (![self.slidingViewController.underLeftViewController isKindOfClass:[companymenuitems class]]) {
+        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"companyitems"];
         
         NSLog(@"BREAK%@",self.slidingViewController.panGesture);
     }

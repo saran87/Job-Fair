@@ -11,7 +11,7 @@
 #import "companymenusviewcontroller.h"
 #import "companydashboard.h"
 #import "ViewController.h"
-#import "Inqueue.h"
+#import "InQueue.h"
 @interface companymenuitems ()
 
 @end
@@ -32,8 +32,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.menuitems = [NSArray arrayWithObjects:@"CompanyBoard", @"In queue", @"SignOut", nil];
+    self.controller = [[NSMutableArray alloc] init];
+    self.menuitems = [NSArray arrayWithObjects:@"CompanyBoard", @"InQueue", @"SignOut", nil];
     
     
     [self.slidingViewController setAnchorRightRevealAmount:145.0f];
@@ -42,7 +42,7 @@
    companydashboard *topview = (companydashboard *)[self.slidingViewController topViewController];
     data = topview.data;
     NSLog(@"MY DATA %@",data);
-    [self controller];
+    [self CreateControllers];
 }
 
 - (void)didReceiveMemoryWarning
@@ -133,9 +133,11 @@
     
     
     NSString *identifier = [NSString stringWithFormat:@"%@", [self.menuitems objectAtIndex:indexPath.row]];
-    
+    NSLog(@"JOBS %@",identifier);
     int index = [self.menuitems indexOfObject:identifier];
+    NSLog(@"%@",[self.controller objectAtIndex:1]);
     TopViewController = [self.controller objectAtIndex:index];
+     NSLog(@"%@",TopViewController);
     [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
         CGRect frame = self.slidingViewController.topViewController.view.frame;
         self.slidingViewController.topViewController = TopViewController;
@@ -169,6 +171,7 @@
         {
             pop.data = data;
         }
+         NSLog(@"%@",pop);
         [self.controller addObject:pop];
     }
     

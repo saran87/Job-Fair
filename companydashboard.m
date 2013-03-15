@@ -44,8 +44,8 @@
     self.view.layer.shadowOpacity = 0.75f;
     self.view.layer.shadowRadius = 10.0f;
     self.view.layer.shadowColor = [UIColor blackColor].CGColor;
-    if (![self.slidingViewController.underLeftViewController isKindOfClass:[menuitems class]]) {
-        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"items"];
+    if (![self.slidingViewController.underLeftViewController isKindOfClass:[companymenuitems class]]) {
+        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"companyitems"];
     }
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     self.menubutton = [UIButton buttonWithType:UIButtonTypeCustom];

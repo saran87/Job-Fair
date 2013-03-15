@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Applicant.h"
 #import "Service.h"
-@interface Inqueue : UIViewController <UITableViewDelegate>
+@interface InQueue : UIViewController <UITableViewDelegate>
 @property (strong,nonatomic) UIButton *menubutton;
 @property (strong,nonatomic) Applicant *_Applicant;
-@property (weak, nonatomic) IBOutlet UILabel *label;
 @property (strong, nonatomic) IBOutlet UITableView *List;
 @property (strong, nonatomic) Service *service;
-@property (strong, nonatomic) NSMutableArray *data;
-
+@property (strong, nonatomic) NSMutableDictionary *data;
+@property (strong, nonatomic) NSMutableArray *applicantdata;
+@property (strong, nonatomic) NSMutableArray *lister;
 @end
