@@ -11,7 +11,6 @@
 #import "menuitems.h"
 #import "CompanyInfo.h"
 #import <CoreMotion/CoreMotion.h>
-
 @interface AppliedJob ()
 @end
 @implementation AppliedJob
@@ -115,14 +114,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
   
     CompanyInfo *TopViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CompanyInfo"];
+    
     TopViewController.data = [self.jobdata objectAtIndex:indexPath.row];
     TopViewController._Applicant = data;
-        CGRect frame = self.slidingViewController.topViewController.view.frame;
+       CGRect frame = self.slidingViewController.topViewController.view.frame;
         self.slidingViewController.topViewController = TopViewController;
         self.slidingViewController.topViewController.view.frame = frame;
         [self.slidingViewController resetTopView];
+    // Pass the selected object to the new view controller.*/
+    //[self.navigationController pushViewController:TopViewController animated:YES];
     
 
 }

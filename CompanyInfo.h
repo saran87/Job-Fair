@@ -8,7 +8,8 @@
 #import "Applicant.h"
 #import <UIKit/UIKit.h>
 #import "Service.h"
-@interface CompanyInfo : UIViewController
+#import "MapViewController.h"
+@interface CompanyInfo : UIViewController<UITableViewDelegate, UITableViewDataSource>
 @property (strong,nonatomic) UIButton *menubutton;
 @property (strong, nonatomic) IBOutlet UILabel *MenuTittle;
 @property (strong,nonatomic) NSMutableArray *data;
@@ -24,6 +25,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *Address;
 @property (strong, nonatomic) IBOutlet UIImageView *bground;
 @property (strong, nonatomic) IBOutlet UIButton *queue;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)queue:(id)sender;
 
 - (IBAction)Apply:(id)sender;

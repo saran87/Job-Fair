@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Applicant.h"
 #import "Service.h"
-@interface AppliedJob : UIViewController <UITableViewDelegate,ServiceProtocol>
+@interface AppliedJob : UIViewController <UITableViewDelegate>
 @property (strong,nonatomic) UIButton *menubutton;
 @property (strong, nonatomic) IBOutlet UITableView *JobList;
 @property (strong,nonatomic) NSMutableDictionary *data;

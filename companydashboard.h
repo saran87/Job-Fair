@@ -10,7 +10,7 @@
 #import "Service.h"
 #import "Organization.h"
 #import "PieChart.h"
-@interface companydashboard : UIViewController <UITableViewDelegate,ServiceProtocol>
+@interface companydashboard : UIViewController <UITableViewDelegate>
 @property (strong,nonatomic) UIButton *menubutton;
 @property (strong, nonatomic) IBOutlet UIButton *company;
 @property (strong,nonatomic) NSDictionary *data;

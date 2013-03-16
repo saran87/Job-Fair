@@ -47,6 +47,9 @@
 		01B8811316EBFC0F0058509D /* InQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B8811216EBFC0E0058509D /* InQueue.m */; };
 		01DCE1D316EFF98A003FB482 /* AppliedJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 01439A5C16EFF77A003A00B3 /* AppliedJob.m */; };
 		01DF113C16EED736004E8E23 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01DF113A16EED736004E8E23 /* MainStoryboard.storyboard */; };
+		A90DD6EC16F412B700569E35 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A90DD6EB16F412B700569E35 /* MapViewController.m */; };
+		A90DD6F116F4131B00569E35 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = A90DD6EE16F4131B00569E35 /* Cell.m */; };
+		A90DD6F216F4131B00569E35 /* CustomCellBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = A90DD6F016F4131B00569E35 /* CustomCellBackground.m */; };
 		A96EE73616EF5D4E00281CF9 /* view.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A96EE73516EF5D4E00281CF9 /* view.jpg */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +117,12 @@
 		01B8811116EBFC0E0058509D /* InQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InQueue.h; sourceTree = "<group>"; };
 		01B8811216EBFC0E0058509D /* InQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InQueue.m; sourceTree = "<group>"; };
 		01DF113B16EED736004E8E23 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = iosChallenge/en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		A90DD6EA16F412B700569E35 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		A90DD6EB16F412B700569E35 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		A90DD6ED16F4131B00569E35 /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		A90DD6EE16F4131B00569E35 /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
+		A90DD6EF16F4131B00569E35 /* CustomCellBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellBackground.h; sourceTree = "<group>"; };
+		A90DD6F016F4131B00569E35 /* CustomCellBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCellBackground.m; sourceTree = "<group>"; };
 		A96EE73216EF565700281CF9 /* ServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceProtocol.h; sourceTree = "<group>"; };
 		A96EE73516EF5D4E00281CF9 /* view.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = view.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -262,6 +271,7 @@
 		015ED22216EF20D2001E2E97 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A90DD6E916F4129B00569E35 /* Map */,
 				015ED22016EF205F001E2E97 /* PieChart */,
 				01B8810C16EBE0E50058509D /* company */,
 				014B933116EBB5D4007F82FD /* applicant */,
@@ -347,6 +357,19 @@
 				01B8811216EBFC0E0058509D /* InQueue.m */,
 			);
 			name = inqueue;
+			sourceTree = "<group>";
+		};
+		A90DD6E916F4129B00569E35 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				A90DD6ED16F4131B00569E35 /* Cell.h */,
+				A90DD6EE16F4131B00569E35 /* Cell.m */,
+				A90DD6EF16F4131B00569E35 /* CustomCellBackground.h */,
+				A90DD6F016F4131B00569E35 /* CustomCellBackground.m */,
+				A90DD6EA16F412B700569E35 /* MapViewController.h */,
+				A90DD6EB16F412B700569E35 /* MapViewController.m */,
+			);
+			name = Map;
 			sourceTree = "<group>";
 		};
 		A96EE73116EF561000281CF9 /* Protocols */ = {
@@ -454,6 +477,9 @@
 				0125793916F13DE500753F62 /* ECSlidingViewController.m in Sources */,
 				0125793A16F13DE500753F62 /* UIImage+ImageWithUIView.m in Sources */,
 				016F523316F3EA980060E18E /* UserInformation.m in Sources */,
+				A90DD6EC16F412B700569E35 /* MapViewController.m in Sources */,
+				A90DD6F116F4131B00569E35 /* Cell.m in Sources */,
+				A90DD6F216F4131B00569E35 /* CustomCellBackground.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

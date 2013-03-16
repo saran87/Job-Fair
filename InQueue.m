@@ -9,6 +9,7 @@
 #import "InQueue.h"
 #import "ECSlidingViewController.h"
 #import "companymenuitems.h"
+#import "CompanyInfo.h"
 @interface InQueue ()
 
 @end
@@ -20,6 +21,7 @@
 @synthesize List;
 @synthesize lister;
 @synthesize applicantdata;
+@synthesize propogateData;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -47,18 +49,18 @@
     
     self.menubutton = [UIButton buttonWithType:UIButtonTypeCustom];
     menubutton .frame = CGRectMake(8, 10, 34, 24);
-   // [menubutton  setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
+    // [menubutton  setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
     [menubutton  addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
     
-//    self.label.text = data.fname;
+    //    self.label.text = data.fname;
     [self.view addSubview:self.menubutton ];
     self.service = [[Service   alloc]init];
     self.service.delegate = self;
-      NSMutableDictionary *newdata = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *newdata = [[NSMutableDictionary alloc] init];
     [newdata setObject:[self.data objectForKey:@"userid"] forKey:@"userid"];
     NSLog(@"INFO %@",newdata);
     [self.service MakeCall:newdata ConnectionString:QUEUED];
-   
+    
 }
 
 - (IBAction)revealMenu:(id)sender
@@ -108,26 +110,25 @@
     
     NSString *identifier = [NSString stringWithFormat:@"%@", [self.lister objectAtIndex:indexPath.row]];
     
-    //int index = [self.menuitems indexOfObject:identifier];
-   // TopViewController = [self.controller objectAtIndex:index];
-    [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
-        CGRect frame = self.slidingViewController.topViewController.view.frame;
-      // self.slidingViewController.topViewController = TopViewController;
-        self.slidingViewController.topViewController.view.frame = frame;
-        [self.slidingViewController resetTopView];
-    }];
-    
+    CompanyInfo *TopViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CompanyInfo"];
+    NSLog(@"%@",self.applicantdata);
+    TopViewController._Applicant = self.applicantdata;
+    TopViewController.data = self.applicantdata;
+    CGRect frame = self.slidingViewController.topViewController.view.frame;
+    self.slidingViewController.topViewController = TopViewController;
+    self.slidingViewController.topViewController.view.frame = frame;
+    [self.slidingViewController resetTopView];
     
 }
 -(void)ServiceRequestComplete:(NSDictionary *)response serviceStatus:(NSString *)status{
-   NSLog(@"APPLIED JOB%@",response);
+    NSLog(@"APPLIED JOB%@",response);
     self.applicantdata = [response objectForKey:@"data"];
     NSLog(@"JOB  %@",self.applicantdata);
     self.lister = [[NSMutableArray alloc] init];
     for(NSDictionary *dataIter in self.applicantdata)
     {
-       [self.lister addObject:[dataIter objectForKey:@"fname"]];
+        [self.lister addObject:[dataIter objectForKey:@"fname"]];
     }
-[self.List reloadData];
+    [self.List reloadData];
 }
 @end

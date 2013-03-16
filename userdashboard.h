@@ -11,7 +11,7 @@
 #import "PieChart.h"
 #import "Applicant.h"
 #import "Service.h"
-@interface userdashboard : UIViewController <ServiceProtocol>
+@interface userdashboard : UIViewController
 @property (strong,nonatomic) UIButton *menubutton;
 @property (weak, nonatomic) IBOutlet UILabel *date;
 @property (strong,atomic) NSMutableDictionary *data;

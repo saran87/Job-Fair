@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface UserInformation : UITableViewController
-
+@property (strong, nonatomic) NSMutableArray *applicantdata;
+@property (strong,nonatomic) UIButton *menubutton;
 @end
