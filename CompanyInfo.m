@@ -284,7 +284,8 @@
     NSString  *title;
     switch  (section) {
         case   JOB_NAME:
-            title =  [NSString stringWithFormat:@"%@ Internship",[(NSDictionary *)data objectForKey:@"quarter"]];
+            NSLog(@"%@",(NSDictionary *) data);
+            //title =  [NSString stringWithFormat:@"%@ Internship",[(NSDictionary *)data objectForKey:@"quarter"]];
             break ;
         default :
             NSLog ( @"Should not be here!! Forming title" );

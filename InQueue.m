@@ -111,9 +111,9 @@
     NSString *identifier = [NSString stringWithFormat:@"%@", [self.lister objectAtIndex:indexPath.row]];
     
     CompanyInfo *TopViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CompanyInfo"];
-    NSLog(@"%@",self.applicantdata);
+    NSLog(@"%@",self.applicantdata); 
     TopViewController._Applicant = self.applicantdata;
-    TopViewController.data = self.applicantdata;
+    TopViewController.data =  (NSMutableArray*) self.applicantdata;
     CGRect frame = self.slidingViewController.topViewController.view.frame;
     self.slidingViewController.topViewController = TopViewController;
     self.slidingViewController.topViewController.view.frame = frame;
