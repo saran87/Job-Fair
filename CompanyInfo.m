@@ -11,6 +11,7 @@
 #import "menuitems.h"
 #import "Applicant.h"
 #import "AppliedJob.h"
+#import "companymenuitems.h"
 @interface CompanyInfo ()
 
 @end
@@ -27,6 +28,8 @@
 @synthesize salary;
 @synthesize gpa;
 @synthesize Address;
+@synthesize bground;
+@synthesize Enque;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -68,7 +71,15 @@
     self.city.text = [(NSDictionary *)data objectForKey:@"city"];
     self.salary.text = [NSString stringWithFormat:@"%.3f",[[(NSDictionary *)data objectForKey:@"salary"] floatValue]];
     self.quarter.text = [(NSDictionary *)data objectForKey:@"quarter"];
-    self.jobdescription.text = [(NSDictionary *)data objectForKey:@"jobdescription"];
+    self.jobdescription.text = [(NSDictionary *)data objectForKey:@"jobdescription1"];
+    if([[(NSDictionary *)data objectForKey:@"applied"] isEqualToNumber:[NSNumber numberWithInt:1]])
+    {
+        [self.bground setImage:[UIImage imageNamed:@"Applied"]];
+    }
+    if([[(NSDictionary *)data objectForKey:@"inqueue"] isEqualToNumber:[NSNumber numberWithInt:1]])
+    {
+        [self.Enque setTitle:@"queued" forState:UIControlStateNormal];
+    }
 }
 - (IBAction)revealMenu:(id)sender
 {
@@ -95,9 +106,39 @@
 -(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
     [self.slidingViewController anchorTopViewTo:ECRight];
 }
-- (IBAction)Apply:(id)sender {
-    [self.bground setImage:[UIImage imageNamed:@"Applied"]];
+- (IBAction)queue:(id)sender {
     self.service = [[Service alloc]init];
-  
+    self.service.delegate = self;
+    NSLog(@"NAME at user:%@",data);
+    NSMutableDictionary *newData = [[NSMutableDictionary alloc] init];
+    
+    [newData setObject:[_Applicant objectForKey:@"userid"] forKey:@"userid"];
+    [newData setObject:[(NSDictionary *)data objectForKey:@"job_id"] forKey:@"jobid"];
+    [self.service MakeCall:newData ConnectionString:ENQUEUE];
+         [self.Enque setTitle:@"Queued" forState:UIControlStateNormal];
+    
 }
+
+- (IBAction)Apply:(id)sender {
+    self.service = [[Service alloc]init];
+    self.service.delegate = self;
+    NSLog(@"NAME at user:%@",data);
+    NSMutableDictionary *newData = [[NSMutableDictionary alloc] init];
+    [newData setObject:[(NSDictionary *)data objectForKey:@"job_id"] forKey:@"jobid"];
+    [newData setObject:[_Applicant objectForKey:@"userid"] forKey:@"userid"];
+    [self.service MakeCall:newData ConnectionString:APPLY];
+    [self.bground setImage:[UIImage imageNamed:@"Applied"]];
+      
+}
+     -(void)ServiceRequestComplete:(NSDictionary *)response serviceStatus:(NSString *)status{
+         if([[response objectForKey:@"applied"] isEqualToNumber:[NSNumber numberWithInt:1]])
+         {
+            [self.bground setImage:[UIImage imageNamed:@"Applied"]];
+         }
+         if([[response objectForKey:@"inqueue"] isEqualToNumber:[NSNumber numberWithInt:1]])
+         {
+              [self.Enque setTitle:@"queued" forState:UIControlStateNormal];
+         }
+        
+     }
 @end

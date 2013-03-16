@@ -6,18 +6,20 @@
 //  Copyright (c) 2013 Roshan Balaji Nindrai SenthilNathan. All rights reserved.
 //
 
-#import "Inqueue.h"
+#import "InQueue.h"
 #import "ECSlidingViewController.h"
 #import "companymenuitems.h"
-@interface Inqueue ()
+@interface InQueue ()
 
 @end
 
-@implementation Inqueue
+@implementation InQueue
 @synthesize menubutton;
 @synthesize data;
-@synthesize label;
 @synthesize service;
+@synthesize List;
+@synthesize lister;
+@synthesize applicantdata;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -26,7 +28,11 @@
     }
     return self;
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    NSLog(@"VIEW LOADED");
+    
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -46,11 +52,13 @@
     
 //    self.label.text = data.fname;
     [self.view addSubview:self.menubutton ];
-    self.service = [[Service alloc]init];
+    self.service = [[Service   alloc]init];
     self.service.delegate = self;
-    NSLog(@"NAME at user:%@",data);
-    [self.service MakeCall:data ConnectionString:JOB];
-    
+      NSMutableDictionary *newdata = [[NSMutableDictionary alloc] init];
+    [newdata setObject:[self.data objectForKey:@"userid"] forKey:@"userid"];
+    NSLog(@"INFO %@",newdata);
+    [self.service MakeCall:newdata ConnectionString:QUEUED];
+   
 }
 
 - (IBAction)revealMenu:(id)sender
@@ -74,7 +82,7 @@
 {
     
     // Return the number of rows in the section.
-    return [self.data count];
+    return [self.lister count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -85,8 +93,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.data objectAtIndex:indexPath.row]];
-    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.lister objectAtIndex:indexPath.row]];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,7 +106,7 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     
-    NSString *identifier = [NSString stringWithFormat:@"%@", [self.data objectAtIndex:indexPath.row]];
+    NSString *identifier = [NSString stringWithFormat:@"%@", [self.lister objectAtIndex:indexPath.row]];
     
     //int index = [self.menuitems indexOfObject:identifier];
    // TopViewController = [self.controller objectAtIndex:index];
@@ -113,7 +120,14 @@
     
 }
 -(void)ServiceRequestComplete:(NSDictionary *)response serviceStatus:(NSString *)status{
-    
-   
+   NSLog(@"APPLIED JOB%@",response);
+    self.applicantdata = [response objectForKey:@"data"];
+    NSLog(@"JOB  %@",self.applicantdata);
+    self.lister = [[NSMutableArray alloc] init];
+    for(NSDictionary *dataIter in self.applicantdata)
+    {
+       [self.lister addObject:[dataIter objectForKey:@"fname"]];
+    }
+[self.List reloadData];
 }
 @end
